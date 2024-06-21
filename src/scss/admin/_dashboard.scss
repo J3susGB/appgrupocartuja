@@ -27,7 +27,7 @@
         height: 0;
         margin: 0;
         
-        @include m.tablet {
+        @include m.desktop {
             visibility: visible;
             height: auto;
             margin: 2rem 0;
