@@ -1970,15 +1970,20 @@ input[type=date] {
   }
 }
 .dashboard__logo {
-  background: linear-gradient(to right, white, #f1f5f9);
-  background-clip: text;
-  color: transparent;
-  font-size: clamp(2rem, -0.8rem + 10vw, 3rem);
-  text-align: center;
+  visibility: hidden;
+  height: 0;
+  margin: 0;
 }
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .dashboard__logo {
-    display: none;
+    visibility: visible;
+    height: auto;
+    margin: 2rem 0;
+    background: linear-gradient(to right, white, #f1f5f9);
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(2rem, -0.8rem + 10vw, 3rem);
+    text-align: center;
   }
 }
 .dashboard__nav {

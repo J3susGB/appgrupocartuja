@@ -23,11 +23,17 @@
     }
 
     &__logo {
-        @include m.texto-degradado(v.$gris-claro, v.$gris-claro);
-        @include m.texto-fluido(2rem, 3rem);
-        text-align: center;
-        @include m.max-tablet {
-            display: none;
+        visibility: hidden;
+        height: 0;
+        margin: 0;
+        
+        @include m.tablet {
+            visibility: visible;
+            height: auto;
+            margin: 2rem 0;
+            @include m.texto-degradado(v.$gris-claro, v.$gris-claro);
+            @include m.texto-fluido(2rem, 3rem);
+            text-align: center;
         }
     }
 
