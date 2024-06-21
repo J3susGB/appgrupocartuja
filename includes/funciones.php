@@ -16,10 +16,10 @@ function s($html) : string {
 // }
 
 function pagina_actual($path) {
-    // Obtener PATH_INFO o REQUEST_URI y remover cualquier query string
     $url_actual = $_SERVER['PATH_INFO'] ?? urldecode(strtok($_SERVER['REQUEST_URI'], '?')) ?? '/';
-    return str_contains($url_actual, $path) ? true : false;
+    return strpos($url_actual, $path) !== false;
 }
+
 
 
 function is_auth() : bool {
