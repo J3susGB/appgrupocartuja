@@ -26,6 +26,9 @@
         @include m.texto-degradado(v.$gris-claro, v.$gris-claro);
         @include m.texto-fluido(2rem, 3rem);
         text-align: center;
+        @include m.max-tablet {
+            display: none;
+        }
     }
 
     &__nav {

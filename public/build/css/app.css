@@ -1976,6 +1976,11 @@ input[type=date] {
   font-size: clamp(2rem, -0.8rem + 10vw, 3rem);
   text-align: center;
 }
+@media (max-width: 768px) {
+  .dashboard__logo {
+    display: none;
+  }
+}
 .dashboard__nav {
   display: flex;
   justify-content: center;
