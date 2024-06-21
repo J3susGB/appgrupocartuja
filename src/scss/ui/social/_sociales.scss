@@ -1,0 +1,22 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.menu-redes {
+    @include m.menu-social(v.$blanco, 2.5rem);
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    grid-column: 2 / 3;
+
+    & a {
+        transition: .2s transform linear;
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    @include m.tablet {
+        justify-content: flex-end;
+        align-items: center;
+    }
+}

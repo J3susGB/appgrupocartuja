@@ -1,0 +1,92 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.asistencia {
+    display: flex;
+    flex-direction: column;
+
+    transition: visibility .3s ease-in-out, opacity .3s linear, height .5s linear;
+    & h3 {
+        width: 14.344rem;
+    }
+
+    & select {
+        cursor: pointer;
+    }
+
+    & .dashboard__campo {
+        display: block;
+
+        @include m.tablet_small {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 1rem;
+        }
+        @include m.tablet {
+            justify-content: space-around;
+        }
+        @include m.desktop {
+            justify-content: center;
+            gap: 7rem;
+        }
+    }
+}
+
+.tabla_asistencia {
+    margin-bottom: 5rem;
+    &:not(:last-child) {
+        margin-bottom: 5rem;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    & h4 {
+        color: v.$secundario;    
+    }
+
+    & th,
+    & td {
+        @include m.tablet {
+            font-size: 1.2rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.5rem;
+        }
+    }
+
+    & .center {
+        @include m.desktop {
+            text-align: center;
+        }
+    }
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    height: 12.02rem;
+    @include m.tablet_small {
+        height: 6.65rem;
+    }
+    @include m.desktop {
+        height: 7.22rem;
+    }
+    @include m.desktop {
+        height: 5.82rem;
+    }
+    transition: visibility .3s ease-in-out, opacity .3s linear, height .5s linear;
+}
+
+.oculto {
+    display: none;
+}
+
+.oculto--filtro {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: visibility .3s ease-in-out, opacity .3s linear, height .5s linear;
+}

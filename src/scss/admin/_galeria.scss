@@ -1,0 +1,199 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+#contenedor-meses {
+    @include m.grid(1, 2rem);
+    
+}
+
+.mes-container {
+    margin: 0 auto;
+    
+    color: v.$principal;
+    // background: radial-gradient(circle farthest-side, rgba(37, 83, 53, 0.15), rgba(49, 148, 66, 0.15));
+    background-color: rgb(236, 231, 231);
+}
+
+.galeria {
+    padding: 3rem;
+
+    @include m.grid(1, 2rem);
+
+    @include m.telefono {
+        @include m.grid(2, 2rem);
+    }
+    
+    @include m.desktop {
+        @include m.grid(4, 2rem);
+    }
+
+    @include m.xl_desktop {
+        @include m.grid(5, 2rem);
+    }
+
+    &__container {
+        // border-radius: 2rem;
+        // background-color: lighten(v.$principal, 70);
+        transition: 300ms background-color ease-in-out, 300ms transform ease-in-out, 300ms color ease-in-out;
+        width: 20rem;
+        // height: 22.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        // padding-top: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 6px 14px;
+        // border: .7rem outset ;
+        // border-radius: 7px;
+        // border-color: v.$blanco lighten(v.$secundario, 50)     lighten(v.$secundario, 50) v.$blanco;
+        transition: 300ms background-color ease-in-out, 300ms transform ease-in-out, 300ms color ease-in-out, 
+            300ms border-color ease-in-out, 300ms background-image ease-in-out;
+        background: v.$gris-claro;
+
+        
+        &:hover {
+            cursor: pointer;
+            // color: v.$blanco;
+            // border-top-color: lighten(v.$secundario, 50);
+            // border-right-color: lighten(v.$secundario, 30);
+            // border-bottom-color: lighten(v.$secundario, 30);
+            // border-left-color: lighten(v.$secundario, 50);
+            // background-color:hsla(141,38%,65%,1);
+            // background-image:
+            //     radial-gradient(at 39% 42%, hsla(130,50%,38%,1) 0px, transparent 50%),
+            //     radial-gradient(at 78% 83%, hsla(139,37%,17%,1) 0px, transparent 50%),
+            //     radial-gradient(at 41% 45%, hsla(210,40%,98%,1) 0px, transparent 50%),
+            //     radial-gradient(at 71% 34%, hsla(130,50%,38%,1) 0px, transparent 50%),
+            //     radial-gradient(at 17% 22%, hsla(139,37%,17%,1) 0px, transparent 50%),
+            //     radial-gradient(at 55% 50%, hsla(210,40%,98%,1) 0px, transparent 50%),
+            //     radial-gradient(at 21% 78%, hsla(130,50%,38%,1) 0px, transparent 50%);
+            transform: scale(1.08);
+            transition: 300ms background-color ease-in-out, 300ms transform ease-in-out, 300ms color ease-in-out, 
+            300ms border-color ease-in-out, 600ms background-image ease-in-out;
+        }
+
+        & img {
+            // width: 15rem;
+            width: 20rem;
+            height: 15rem;
+            object-fit: cover;
+            // border-radius: 50%;
+            // border-bottom-left-radius: 0;
+            // border-bottom-right-radius: 0;
+            transition: 300ms box-shadow ease-in-out;
+            &:hover {
+                box-shadow: v.$gris-oscuro 0px 5px 8px 0px, darken(v.$gris-claro, 10) 0px 0px 0px 1px;
+                transition: 300ms box-shadow ease-in-out;
+            }
+        }
+    }
+
+    .galeria__acciones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    &__texto {
+        padding: .5rem;
+        font-size: 1rem;
+        font-weight: v.$bold;
+        display: flex;
+        // flex-direction: row;
+        justify-content: space-between;
+        // align-items: center;
+        gap: 1rem;
+        text-transform: uppercase;
+
+        @include m.tablet {
+            font-size: 1.2rem;
+        }
+
+    }
+}
+
+.acciones-foto {
+    font-size: 1rem;
+}
+
+form.fotos.table__formulario {
+    margin-top: -5px;
+}
+
+.text-center--galeria {
+    width: 100%;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(v.$negro, 0.8);
+    // background-color:hsla(0,0%,75%,.5);
+    // background-image:
+    // radial-gradient(at 74% 98%, hsla(33,100%,0%,1) 0px, transparent 50%),
+    // radial-gradient(at 22% 22%, hsla(127,0%,0%,1) 0px, transparent 50%),
+    // radial-gradient(at 70% 70%, hsla(0,0%,0%,1) 0px, transparent 50%),
+    // radial-gradient(at 64% 29%, hsla(303,0%,0%,1) 0px, transparent 50%),
+    // radial-gradient(at 92% 22%, hsla(20,100%,0%,1) 0px, transparent 50%),
+    // radial-gradient(at 17% 83%, hsla(160,100%,0%,1) 0px, transparent 50%);
+    display: grid;
+    place-items: center;
+    animation: fadeIn ease-in 0.5s;
+
+    &.fade-out {
+        animation: fadeOut ease-in 0.5s;
+    }
+
+    img {
+        border-radius: 1rem;
+        max-width: 60rem;
+        box-shadow: darken(v.$gris-claro, 50) 0px 10px 36px 0px, v.$blanco 0px 0px 0px 1px;
+    }
+}
+
+.btn-cerrar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: v.$rojo;
+    border: none;
+    color: v.$blanco;
+    display: grid;
+    place-items: center;
+    font-weight: v.$bold;
+    transition: 300ms background-color ease-in-out, 300ms color ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        background-color: v.$blanco;
+        color: v.$rojo;
+        transition: 300ms background-color ease-in-out, 300ms color ease-in-out;
+    }
+}
+
+.galeria__container2 {
+    width: 200px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

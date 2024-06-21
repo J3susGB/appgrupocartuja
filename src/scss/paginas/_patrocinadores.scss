@@ -1,0 +1,196 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.grid__icono img {
+    object-fit: cover;
+    width: 15rem;
+    // min-height: 8.3rem;
+//     @include m.telefono_small {
+//         width: 12rem;
+//     }
+    @include m.tablet_small {
+        width: 20rem;
+    }
+    @include m.tablet {
+        width: 30rem;
+    }
+    @include m.xl_desktop {
+        width: 40rem;
+    }
+}
+
+.patrocinadores {
+    @include m.contenedor;
+
+    &__grid {
+        @include m.contenedor-md;
+        // width: 98%;
+        @include m.grid(2, 1rem);
+        justify-content: space-around;
+        align-items: center;
+        place-items: center;
+
+        @include m.xl_desktop {
+            @include m.contenedor-md2;
+            // @include m.grid(3, 1rem);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 5rem;
+        }
+    }
+
+    &__boton {
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: v.$principal;
+        color: v.$blanco;
+
+        &:hover {
+            background-color: darken( v.$principal, 5% );
+            cursor: pointer;
+        }
+    }
+
+    &__patrocinador {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 15rem;
+        @include m.xl_desktop {
+            width: 55.5rem;
+            height: 20rem;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        margin-top: 10rem;
+    }
+
+    &__contenedor1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        // @include m.xl_desktop {
+        //     @include m.grid(2, 10rem);
+        // }
+    }
+
+    &__box {
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        // padding: 1rem;
+        border-radius: 1rem;
+        width: 35rem;
+            @include m.telefono {
+                width: 40rem;
+            }
+            @include m.tablet_small {
+                width: 55rem;
+            }
+            @include m.tablet {
+                width: 68rem;
+            }
+            @include m.desktop {
+                width: 80rem;
+            }
+    }
+
+    &__logo {
+        @include m.texto-fluido(.5rem, 2rem);
+        text-align: center;
+
+        @include m.telefono {
+            width: 50rem;
+        }
+    }
+
+    &__texto,
+    &__informacion {
+        line-height: 2;
+        font-size: 1.3rem;
+        padding: 0 1rem;
+        @include m.tablet_small {
+            font-size: 1.8rem;
+            padding: 0 2rem;
+        }
+        @include m.desktop {
+            font-size: 2rem;
+            padding: 0 3rem;
+        }
+
+        & span {
+            font-weight: v.$delgada;
+            font-style: italic;
+        }
+
+        & a {
+            all: unset;
+            font-weight: v.$bold;
+            color: v.$black;
+            cursor: pointer;
+            font-style: italic;
+        }
+    }
+}
+.patrocinadores__publi {
+    margin-bottom: 5rem;
+}
+
+.patrocinadores__publi p {
+    line-height: 2.2;
+    font-size: 1.3rem;
+    padding: 0 1rem;
+    @include m.tablet_small {
+        font-size: 1.8rem;
+        padding: 0 2rem;
+    }
+    @include m.desktop {
+        font-size: 2rem;
+        padding: 0 3rem;
+    }
+
+    & a {
+        all: unset;
+        font-weight: v.$bold;
+        color: v.$black;
+        cursor: pointer;
+        font-style: italic;
+    }
+}
+
+.no-visto {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: visibility 0s 0.5s, opacity 0.3s linear, height 0.5s ease-in-out;
+}
+
+.visto {
+    // margin-top: 10rem;
+    visibility: visible;
+    opacity: 1;
+    height: 70rem; 
+    transition: visibility 0s 0s, opacity 0.3s linear, height 0.5s ease-in-out;
+    @include m.tablet_small {
+        height: 83rem;
+    }
+    @include m.tablet {
+        height: 75rem;
+    }
+    @include m.desktop {
+        height: 79rem;
+    }
+}

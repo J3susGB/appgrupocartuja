@@ -1,0 +1,190 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+  
+.entrenamientos {
+    @include m.max-desktop {
+
+        & .download {
+            margin: 1rem auto 0 auto;
+        }
+        .table {
+            display: block;
+        }
+    
+        .table__thead {
+            display: none;
+        }
+    
+        .table__tbody {
+            display: block;
+        }
+    
+        .table__tr {
+            display: block;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            margin-left: -25px;
+            @include m.tablet_small {
+                margin-left: -50px;
+            }
+        }
+    
+        .table__td {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: none;
+            position: relative;
+            text-align: left;
+        }
+    
+        .table__td::before {
+            content: attr(data-label);
+            font-weight: bold;
+        }
+    
+        .td__planning {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .td__planning::before {
+            text-align: center;
+            width: 90%;
+            margin: 2rem auto;
+        }
+    }
+}
+
+.modal2 {
+    padding: 1.2rem;
+}
+
+.entrenamientos {
+    
+    & .download {
+        margin: 1rem auto 0 auto;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__card {
+        margin: 0 auto;
+        max-width: 90rem;
+        // height: 45rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        background-color: v.$blanco;
+        box-shadow: rgba(255, 255, 255, 0.35) 0px 5px 15px;
+
+        @include m.desktop {
+            width: 90rem;
+        }
+    }
+
+    &__texto {
+        margin-bottom: 1rem;
+        
+        &--titulo {
+            text-align: center;
+            margin-top: 0;
+            color: v.$principal;
+            @include m.tablet_small {
+                font-size: 3.8rem;
+            }
+        }
+        &--fecha {
+            text-align: center;
+            color: v.$secundario;
+            margin: 1.5rem auto;
+            @include m.tablet_small {
+                font-size: 2.7rem;
+            }
+        }
+        &--notas {
+            margin: 1rem auto;
+            text-align: left;
+            line-height: 1.7;
+            padding: 1rem;
+            font-size: 1.2rem;
+            @include m.tablet_small {
+                font-size: 1.5rem;
+            }
+        }
+    }
+
+    &__documento {
+        height: 10rem;
+        @include m.desktop { //estaba en xl_desktop y height 25 rem
+            height: auto;
+        }
+        & embed {
+            height: 100%;
+        }
+    }
+
+    @include m.desktop {
+        #download {
+            margin-left: 2rem;
+        }
+        .table__tr:nth-child(even) {
+            background-color: darken(v.$gris-claro, 5);
+        }
+    }
+    
+    @include m.max-desktop {
+        .table__tr:nth-child(even) {
+            background-color: transparent;
+        }
+    }
+}
+
+.alerta.formulario__submit.formulario__submit--registrar.descargar_planning {
+    font-size: 2rem;
+    @include m.tablet_small {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25rem;
+        margin-top: 2rem;
+        align-self: flex-end;
+    }
+}
+
+.privada__entrenamientos-container {
+    @include m.contenedor;
+}
+
+.mensaje {
+    text-align: left;
+
+    &--asunto {
+        font-size: 1.8rem;
+        color: v.$secundario;
+        @include m.tablet_small {
+            font-size: 2rem;
+        }
+        @include m.xl_desktop {
+            font-size: 2.3rem;
+        }
+    }
+
+    &--cuerpo {
+        font-size: 1.5rem;
+        color: black;
+        @include m.tablet_small {
+            font-size: 1.7rem;
+        }
+        @include m.xl_desktop {
+            font-size: 2rem;
+        }
+    }
+}

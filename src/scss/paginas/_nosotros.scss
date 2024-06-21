@@ -1,0 +1,45 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.nosotros {
+
+    &__grid {
+        @include m.contenedor_xl;
+    }
+
+    &__imagen {
+        @include m.tablet_small{
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__contenido {
+        text-align: justify;
+        @include m.grid(1, 0);
+        @include m.tablet {
+            @include m.grid(2, 2.5rem);
+            
+        }
+    }
+
+    &__texto {
+        padding: 0 .5rem;
+        line-height: 2;
+        font-size: 1.3rem;
+        @include m.tablet_small{
+            font-size: 1.6rem;
+        }
+        @include m.tablet{
+            font-size: 1.8rem;
+        }
+
+        @include m.xl_desktop{
+            font-size: 2rem;
+        }
+
+        & span {
+            font-style: italic;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,260 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header {
+    min-height: 42rem;
+    background-image: linear-gradient( to right, rgba(darken(v.$gris-claro, 5%), 1), rgba(v.$gris-claro, .9) );
+    
+    @include m.tablet {
+        height: 20rem;
+    }
+
+    &__bienvenida {
+        color: v.$principal;
+        margin: 0;
+        padding: 1rem 2rem 1rem 1rem;
+        font-size: 1.2rem;
+        font-weight: v.$bold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0rem;
+        
+        a {
+            color: v.$principal;
+            i {
+                cursor: pointer;
+                margin-left: 1rem;
+            }
+        }
+
+        &--oculto {
+            display: hidden;
+            height: 0;
+        }
+        @include m.telefono {
+            font-size: 1.5rem; 
+        }
+        @include m.tablet {
+            font-size: 1.7rem; 
+        }
+        & span {
+            font-style: italic;
+            margin-left: .2rem;
+        }
+    }
+
+    &__contenedor {
+        @include m.contenedor;
+    }
+
+    &__navegacion {
+        padding: 5rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        @include m.tablet {
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @include m.tablet {
+            margin-top: -3rem;
+            margin-bottom: 3rem;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 5rem;
+        }
+    }
+
+    &__logo2 {
+        & img {
+            width: 15rem;
+            @include m.tablet {
+                width: 20rem;
+            }
+        }
+    }
+    
+    &__enlace {
+        @include m.enlace;
+
+        &--home {
+            color: v.$blanco;
+            &:hover {
+                color: v.$secundario;
+            }
+        }
+
+
+    }
+
+    &__logo {
+        @include m.texto-fluido(2rem, 4rem);
+        text-align: center;
+        @include m.texto-degradado(v.$principal, v.$secundario);
+
+    }
+
+    &__boton {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        transition: transform .3s linear;
+
+        & svg {
+            width: 3rem;
+            fill: darken(v.$secundario, 12%);
+            cursor: pointer;
+
+        }
+
+        @include m.tablet {
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+        }
+    }
+}
+
+// .mensajes-icono {
+//     position: relative;
+//     display: inline-block;
+// }
+
+// .mensaje-count {
+//     position: absolute;
+//     top: -10px; /* Ajusta según sea necesario */
+//     right: -10px; /* Ajusta según sea necesario */
+//     background-color: v.$secundario;
+//     color: white;
+//     border-radius: 50%;
+//     padding: 3px 4px 3px 3px;
+//     // padding-right: 5px;
+//     font-size: 8px; /* Tamaño más pequeño */
+//     display: none; /* Inicialmente oculto */
+// }
+
+
+.mensajes-icono {
+    position: relative;
+    display: inline-block;
+}
+
+.mensaje-count {
+    position: absolute;
+    top: 1.4px; /* Ajusta según sea necesario */
+    right: 4.5px; /* Ajusta según sea necesario */
+    // background-color: v.$blanco;
+    color: v.$blanco;
+    // border-radius: 50%;
+    // padding: 1px 2px 1px 1px;
+    font-size: 7px; /* Tamaño más pequeño */
+    display: none; /* Inicialmente oculto */
+
+    @include m.telefono {
+        font-size: 8px;
+        right: 5.5px;
+    }
+    @include m.tablet {
+        font-size: 9px;
+        top: 2.5px;
+        right: 6.5px;
+    }
+}
+
+.mensajes-icono.animate__animated.animate__bounce,
+.mensaje-count.animate__animated.animate__bounce {
+    --animate-duration: 1.2s; /* Cambia la duración de la animación a 2 segundos */
+}
+
+.barra {
+    background-color: v.$principal;
+    visibility: hidden; //Lo mostrará
+    opacity: 0;
+    height: 0;
+    transition: visibility .3s ease-in-out, opacity .3s linear, height .5s linear;
+    @include m.tablet {
+        visibility: visible; //Lo mostrará
+        opacity: 1;
+        height: 8rem;
+    }
+
+    & .navegacion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 0;
+        }
+
+        & a {
+            color: v.$blanco;
+            text-transform: uppercase;
+            font-weight: v.$bold;
+            padding: 1rem;
+            border-radius: .5rem;
+            transition: background-color .3s ease-in-out, color .3s ease-in-out;
+            
+            &:hover {
+                background-color: v.$blanco;
+                color: v.$principal;
+                
+            }
+        }
+
+        & .navegacion__enlace--actual {
+            background-color: v.$blanco;
+            color: v.$principal;
+        }
+    }
+}
+
+.mostrar {
+    visibility: visible; //Lo mostrará
+    opacity: 1;
+    height: 26rem;  
+    
+    @include m.tablet {
+        height: auto;
+    }
+}
+
+.abierto {
+    transform: scale(0.4) rotate(90deg);
+    transition: transform .3s linear;
+}
+
+.cerrar_sesion {
+    display: inline-block; /* Asegura que el botón se comporte como un enlace */
+    padding: 1rem 2rem; /* Igual que el enlace */
+    text-decoration: none; /* No aplica, pero mantiene la consistencia */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Pointer cursor para el botón */
+    text-align: center; /* Centra el texto */
+}
+
+// .dashboard__submit--logout.header__enlace.header__enlace--home {
+//     @extend .header__enlace;
+//     color: v.$gris-claro;
+        
+//     &:hover {
+//         color: v.$secundario;
+//     }
+// }
+

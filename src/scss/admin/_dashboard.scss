@@ -1,0 +1,581 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: v.$gris-claro;
+
+    &__header {
+        background-color: darken(v.$principal, 6%);
+        padding: 2rem;
+    }
+
+    &__header-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include m.tablet {
+            flex-direction: row;
+            justify-content: space-between
+        }
+    }
+
+    &__logo {
+        @include m.texto-degradado(v.$gris-claro, v.$gris-claro);
+        @include m.texto-fluido(2rem, 3rem);
+        text-align: center;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        & a {
+            padding-top: .3rem;
+        }
+    }
+
+    &__boton {
+        margin-left: -12rem;
+        transition: color .3s ease-in-out, rotate .3s ease-in-out;
+
+        & svg {
+            width: 3rem;
+            fill: darken(v.$principal, 6%);
+            cursor: pointer;
+        }
+
+        @include m.tablet {
+            visibility: hidden;
+            opacity: 0;
+            height: 0;
+        }
+    }
+
+    &__submit--logout {
+        @include m.enlace;
+        
+        color: v.$gris-claro;
+        
+        &:hover {
+            color: v.$secundario;
+        }
+    }
+
+    &__filtros {
+        background-color: v.$blanco;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        @include m.contenedor-md2;
+        margin-bottom: 3rem;
+        @include m.desktop {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 1rem;
+        }
+
+        h3 {
+            color: v.$principal;
+            font-size: 2.8rem;
+            @include m.xl_desktop {
+                margin: 1.3rem;
+            }
+        }
+    }
+
+    &__inputs {
+        @include m.tablet_small {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @include m.tablet {
+            justify-content: space-evenly;
+            gap: 0;
+        }
+
+        @include m.desktop {
+            // display: flex;
+            justify-content: space-around;
+            // align-items: center;
+            gap: 1rem;
+        }
+        
+
+        h4 {
+            width: 9rem;
+        }
+    }
+
+    &__campo {
+        display: flex; 
+        align-items: center;
+
+        input[type="text"],
+        select {
+            min-width: 23rem;
+            max-width: 24rem;
+            height: 4.8rem;
+            padding: 1rem;
+            border: 1px solid v.$principal;
+            border-radius: .5rem;
+            background-color: lighten(v.$secundario, 57%);
+
+            &:focus {
+                border: 2px solid v.$principal; /* Cambia el color del borde al enfocar */
+                outline: none; /* Elimina el resplandor predeterminado en algunos navegadores */
+                box-shadow: 0 0 10px lighten(v.$secundario, 40%); /* Añade una sombra al enfocar */
+            }
+        }
+
+        input[type="text"] {   
+            height: 100%;
+
+            &::placeholder {
+                color: rgba(v.$principal, .8);
+            }
+        }
+    }
+    .grid-item-full {
+        grid-column: 1 / span 2; /* Ocupa dos columnas */
+    }
+
+    .grid-item-row2-col1 {
+        grid-row: 2; /* Segunda fila */
+        grid-column: 1; /* Primera columna */
+    }
+
+    .grid-item-row3-col1 {
+        grid-row: 3; /* Tercera fila */
+        grid-column: 1; /* Primera columna */
+    }
+
+    .grid-item-row2-col2 {
+        grid-row: 2; /* Segunda fila */
+        grid-column: 2; /* Segunda columna */
+    }
+
+    .grid-item-row3-col2 {
+        grid-row: 3; /* Tercera fila */
+        grid-column: 2; /* Segunda columna */
+    }
+
+    &__grid {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        @include m.tablet {
+            flex-direction: row;
+            flex: 1;
+            
+        }
+  
+    }
+
+    &__sidebar {
+        display: flex;
+        background: linear-gradient(to bottom, lighten(grey, 30%), lighten(grey, 35%));
+        flex-direction: row;
+        width: 100%;
+        height: 10rem;
+        @include m.tablet {
+            flex-direction: column;
+            width: 12rem;
+            height: 100%;
+        }
+    }
+
+    &__menu {
+        padding: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 10rem;
+        width: 100%;
+        gap: 1rem;
+        @include m.tablet {
+            flex-direction: column;
+        }
+    }
+
+    &__enlace {
+        color: grey;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 1rem;
+        transition: 300ms background-color ease-in-out, 300ms color ease, 300ms border-radius ease, 300ms transform ease ;
+        &:hover,
+        &--actual {
+            background-color: lighten(grey, 20);
+            color: v.$principal;
+            transform: scale(1.1);
+            transition: 300ms background-color ease-in-out, 300ms color ease, 300ms border-radius ease, 300ms transform ease;
+        }
+    }
+
+    &__icono {
+        font-size: 1.5rem;
+        @include m.telefono_small {
+            font-size: 2rem;
+        }
+    }
+
+    &__menu-texto {
+        font-size: .5rem;
+        text-transform:uppercase;
+        font-weight: v.$bold;
+        margin-top: .5rem;
+        @include m.telefono_small {
+            font-size: 1.1rem;
+        }
+    }
+
+    &__contenido {
+        width: 100%;
+        padding: 1rem 1rem 3rem 1rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        @include m.tablet {
+            padding: 1rem 5rem 3rem 3rem;
+        }
+        
+    }
+
+    &__contenedor-boton {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 5rem
+    }
+
+    &__contenedor-boton-tallas {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        
+        @include m.tablet_small {
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+        @include m.desktop {
+            justify-content: center;
+        }
+        @include m.xl_desktop {
+            justify-content: flex-end;
+        }
+    }
+
+    &__boton--panel {
+        @include m.boton(v.$principal, v.$blanco);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        @include m.tablet {
+            width: auto;
+        }
+    }
+
+    &__contenedor {
+        @include m.shadow;
+        background-color: v.$blanco;
+        padding: 2rem;
+        border-radius: 1rem;
+        // text-align: center
+    }
+
+    &__formulario {
+        @extend .dashboard__contenedor;
+        @include m.contenedor-md;
+    }
+
+    &__recuento {
+        @include m.contenedor-mdXS;
+        background-color: v.$blanco;
+        border-radius: 1rem;
+        padding: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        margin-bottom: 1rem;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 3rem;
+
+        &--grid {
+            @include m.tablet_small {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: auto, auto;
+            }
+
+            @include m.desktop {
+                margin: 0 12.5%;
+            }
+
+            @include m.xl_desktop {
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &--balance {
+                grid-column: 1 / -1; // Modificado para que ocupe todas las columnas disponibles
+                max-width: 100%; // Se establece un ancho máximo
+                margin: 0 auto; // Se centra horizontalmente
+            }
+        }
+
+        &--cuentas {
+            @include m.contenedor-md2;
+            margin-bottom: 7rem;
+
+            h3 {
+                font-size: 2.7rem;
+                color: v.$principal;
+            }
+            p {
+                text-align: left;
+                padding: 0 2rem;
+
+                & span {
+                    color: v.$principal;
+                    font-weight: v.$bold;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        span {
+            color: v.$principal;
+        }
+    }
+
+    &__contenedor-graficas{
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+        transition: visibility .3s ease-in-out, opacity .3s linear, height .3s linear;
+        
+        // @include m.tablet_small {
+        //     height: 830rem;
+        // }
+        // @include m.desktop {
+        //     height: auto;
+        // }
+        @include m.xl_desktop {
+            // height: 323rem;
+            @include m.grid(2, 1rem);
+            margin: auto 5rem;
+        }
+    }
+
+    &__grafica {
+        @include m.contenedor-md2;
+        margin-bottom: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 2rem;
+        border-radius: 1rem;
+        width: 32.5rem;
+        @include m.tablet_small {
+            width: 45rem;
+        }
+        @include m.desktop {
+            width: 70rem;
+        }
+        @include m.xl_desktop {
+            width: 50rem;
+        }
+        
+       
+    }
+}
+
+.dashboard__contenedor-graficas.ocultalo {
+    opacity: 0; /* Establece la opacidad en 0 cuando está oculto */
+    pointer-events: none; /* Evita interacciones cuando está oculto */
+    height: 0; /* Establece la altura en 0 cuando está oculto */
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+}
+
+.box_graficas {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.caja-grafica {
+    padding: 1rem;
+    padding-bottom: 5rem;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    &__top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin: 2rem auto 3rem auto;
+
+        & i {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    p {
+        margin: 0;
+    }
+}
+
+// @keyframes mover {
+//     0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+//         transform: translateY(0);
+//     }
+//     5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+//         transform: translateY(2px);
+//     }
+//     25%, 75% {
+//         animation-delay: 20s; // Pausa de 20 segundos después de 5 movimientos
+//     }
+// }
+
+#regalos-grafica1,
+#regalos-grafica2 {
+    max-width: 325px;
+    max-height: 325px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    
+    @include m.tablet_small {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    @include m.desktop {
+        max-width: 500px;
+        max-height: 400px;
+    }
+    @include m.xl_desktop {
+        max-width: 500px;
+        max-height: 400px;
+    }
+}
+
+.ocultalo {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: visibility .3s linear,opacity .3s linear, height .3s linear;
+    // margin-bottom: 5rem;
+}
+
+.filtros__texto {
+    margin-top: 3rem;
+    text-align: center; /* Centra el contenido dentro del contenedor */
+}
+
+#f_nombre {
+    height: 4.416rem;
+    max-width: 26rem;
+    width: auto;
+    padding: 1rem;
+    border: 1px solid v.$principal;
+    border-radius: .5rem;
+    background-color: lighten(v.$secundario, 57%);
+    display: block; /* Hace que el input sea un elemento de bloque */
+    margin: 3.5rem auto; /* Establece los márgenes laterales automáticos para centrarlo horizontalmente */
+
+    &:focus {
+        border: 2px solid v.$principal; /* Cambia el color del borde al enfocar */
+        outline: none; /* Elimina el resplandor predeterminado en algunos navegadores */
+        box-shadow: 0 0 10px lighten(v.$secundario, 40%); /* Añade una sombra al enfocar */
+    }
+}
+
+.icono-copy {
+    // border: .2px white solid;
+    // text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    @include m.xl_desktop {
+        margin-left: .5rem;
+    }
+    
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+#restablecerFiltros {
+    margin: 2rem auto 5rem auto;
+    
+}
+
+.padding {
+    @include m.desktop {
+        padding-top: 1.5rem;
+    }
+
+}
+
+.icono_index {
+    // border-radius: 50%;
+    // // border: 2px solid v.$blanco;
+    // margin-right: .1rem;
+    // padding-right: .3rem;
+    // padding-left: .2rem;
+    // padding-top: .25rem;
+    // padding-bottom: .1rem;
+    background-color: v.$blanco;
+    color: v.$principal;
+}
+
+#contenedor-tabla-cuentas {
+    margin-top: 7rem;
+}
+
+.dashboard__recuento--grid--balance--cuentas {
+    @include m.tablet_small {
+        input[type="text"] {
+            min-width: 39rem;
+            max-width: 40rem;
+        }
+    }
+
+    @include m.xl_desktop {
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto, auto;
+
+        input[type="text"] {
+            width: 50rem;
+        }
+    }
+}
+
+.negativo {
+    color: v.$rojo;
+}
+
+.positivo {
+    color: v.$verde;
+}
+
+// .cerrar_sesion {
+//     @include m.enlace;
+//     all: unset;
+//     color: v.$secundario;
+//     &:hover {
+//         color: v.$principal;
+//     }
+// }

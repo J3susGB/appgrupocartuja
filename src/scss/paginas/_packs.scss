@@ -1,0 +1,271 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.boxesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @include m.xl_desktop {
+        // background-color: v.$gris-claro;
+        padding: 6rem 6rem 12rem 6rem;
+        border-radius: 2rem;
+        box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    }
+    
+    @include m.contenedor;
+    gap: 13rem;
+    @include m.telefono{
+        gap: 0;
+    }
+}
+
+.cardBox {
+    font-size: 1.2em;
+    margin: 1% 0;
+    perspective: 800px;
+    transition: all 0.3s ease 0s;
+    width: 23.7%;
+}
+
+.cardBox:hover .card {
+    transform: rotateY(180deg);
+    transition: transform 1s ease;
+}
+
+.card {
+    cursor: default;
+    height: 40rem;
+    transform-style: preserve-3d;
+    transition: transform 1s ease 0s;
+    width: 100%;
+    border-radius: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    -webkit-animation: giro 1s 1;
+    animation: giro 1s 1;
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    box-sizing: border-box;
+    color: white;
+    display: block;
+    font-size: 1.2em;
+    height: 100%;
+    padding: 0.8em;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    border-radius: 2rem;
+}
+
+.back {
+    transform: rotateY(180deg);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    p,
+    ul {
+        // @include m.reset-lista;
+        text-align: left;
+        color: v.$blanco;
+        line-height: 1.8;
+        font-size: 2rem;
+        margin: 0;
+    }
+    ul{
+        margin: 0 auto;
+        list-style: circle;
+    }
+}
+
+.cardBox:nth-child(1) .card .front {
+    background: linear-gradient(to bottom right,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5);
+        background-color: hsla(35, 0%, 75%, 1);
+}
+.cardBox:nth-child(1) .card .back {
+    background: linear-gradient(to bottom right,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5,
+                hsla(204, 45%, 78%, 0.9),
+                #649cc5);
+        background-color: hsla(35, 0%, 75%, 1);
+
+}
+
+.cardBox:nth-child(2) .card .front {
+    background: linear-gradient(to bottom right,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34);
+        background-color: hsla(35, 0%, 75%, 1);
+}
+.cardBox:nth-child(2) .card .back {
+    background: linear-gradient(to bottom right,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34,
+                hsla(222, 50%, 34%, 0.9),
+                #111b34);
+        background-color: hsla(35, 0%, 75%, 1);
+}
+
+.cardBox:nth-child(3) .card .front {
+    background: linear-gradient(to bottom right,
+                #60101d,
+                hsla(350, 73%, 41%, 0.9),
+                #60101d,
+                hsla(350, 73%, 41%, 0.9),
+                #60101d,
+                hsla(350, 73%, 41%, 0.9));
+        background-color: hsla(35, 0%, 75%, 1);
+}
+.cardBox:nth-child(3) .card .back {
+    background: linear-gradient(to bottom right,
+                #60101d,
+                hsla(350, 73%, 41%, 0.9),
+                #60101d,
+                hsla(350, 73%, 41%, 0.9),
+                #60101d,
+                hsla(350, 73%, 41%, 0.9));
+        background-color: hsla(35, 0%, 75%, 1);
+}
+
+.cardBox:nth-child(4) .card .front {
+    background: linear-gradient(to bottom right,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d);
+        background-color: hsla(35, 0%, 75%, 1);
+}
+.cardBox:nth-child(4) .card .back {
+    background: linear-gradient(to bottom right,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d,
+                hsla(174, 76%, 35%, 0.9),
+                #0d413d);
+        background-color: hsla(35, 0%, 75%, 1);
+}
+
+.cardBox:nth-child(2) .card {
+    -webkit-animation: giro 1.5s 1;
+    animation: giro 1.5s 1;
+  }
+   
+  .cardBox:nth-child(3) .card {
+    -webkit-animation: giro 2s 1;
+    animation: giro 2s 1;
+  }
+   
+  .cardBox:nth-child(4) .card {
+    -webkit-animation: giro 2.5s 1;
+    animation: giro 2.5s 1;
+  }
+
+@keyframes giro {
+    from {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+@-webkit-keyframes giro {
+    from {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .cardBox {
+        margin-left: 2.8%;
+        margin-top: 3%;
+        width: 46%;
+    }
+
+    .card {
+        height: 40rem;
+    }
+
+    .cardBox:last-child {
+        margin-bottom: 3%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cardBox {
+        width: 94.5%;
+        height: 290px;
+    }
+}
+
+strong {
+    font-size: 4rem;
+    font-weight: v.$bold;
+}
+
+.packs {
+    margin-bottom: 20rem;
+    height: 100%;
+    @include m.telefono {
+        margin-bottom: 0;
+    }
+    h3 {
+        min-height: 7rem;
+    }
+    &__precio {
+        margin-top: 30%;
+        font-size: 1.8rem;
+        @include m.telefono_small {
+            margin-top: 20%;
+        }
+
+        & span {
+            font-size: 3.5rem;
+            font-weight: v.$bold;
+        }
+    }
+
+    &__info {
+        margin-top: 20%;
+        font-size: 1.2rem;
+        @include m.telefono_small {
+            margin-top: 15%;
+        }
+        @include m.tablet {
+            margin-top: 45%;
+        }
+    }
+}

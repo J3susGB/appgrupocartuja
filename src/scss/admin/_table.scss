@@ -1,0 +1,255 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.filtros {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    border-bottom: solid 5px v.$principal;
+
+    @include m.tablet_small {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+    }
+    &__fecha {
+      padding: 1rem;
+      border: 1px solid v.$principal;
+      border-radius: .5rem;
+      background-color: lighten(v.$secundario, 57%);
+      @include m.tablet_small {
+        margin-bottom: 3.5rem;
+      }
+
+        &::placeholder {
+            color: rgba(v.$principal, .8);
+        }
+        &:focus {
+            border: 2px solid v.$principal; /* Cambia el color del borde al enfocar */
+            outline: none; /* Elimina el resplandor predeterminado en algunos navegadores */
+            box-shadow: 0 0 10px lighten(v.$secundario, 40%); /* Añade una sombra al enfocar */
+        }
+    }
+
+    &__turno {
+        margin-bottom: 3.5rem;
+    }
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__thead {
+        background-color: v.$principal;
+        color: v.$blanco;
+        border-radius: 1rem;
+
+        @include m.max-desktop {
+            visibility: hidden;
+        }
+    }
+
+    &__th {
+        padding: 1rem;
+        text-align: left;
+        @include m.max-desktop {
+            margin-top: 0;
+        }
+    }
+
+    
+
+    &__tr {
+        padding: 2rem;
+        border-radius: 1rem;
+        
+        &:nth-child(even) {
+            background-color: darken(v.$gris-claro, 5);
+       } 
+      
+
+       @include m.max-desktop {
+            display: inline-block;
+            width: 120%;
+            margin-bottom: 1rem;
+            
+            &:nth-child(1) {
+                margin-top: -5rem;
+            }
+       }
+    }
+
+    &__td {
+        padding: 1.5rem 1rem;
+
+        @include m.max-desktop {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0;
+            position: relative;
+
+            &::before {
+                content: attr(data-label);
+                display: block;
+                font-weight: bold;
+                margin-bottom: 0.5rem;
+                color: v.$blanco;
+                background-color: v.$principal;
+                border-radius: .5rem;
+                padding: .1rem 0 .1rem .1rem;
+                // width: min(12rem, 20rem);
+            }
+       }
+
+        &--acciones {
+            @extend .table__td;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+            @include m.desktop {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &__accion {
+        all: unset;
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: v.$bold;
+
+        &--editar {
+            color: v.$secundario;
+            transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            &:hover {
+                color: darken(v.$secundario, 10);
+                border-bottom: 1px solid darken(v.$secundario, 10);
+                transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            }
+        }
+
+        &--eliminar {
+            color: v.$rojo;
+            transition: 3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            &:hover {
+                color: darken(v.$rojo, 5);
+                border-bottom: 1px solid darken(v.$rojo, 5);
+                transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+
+.table-lista {
+    @extend .table;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & img {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.3em 0.3em, rgba(0, 0, 0, 0.25) 0px 0.3em 0.8em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;        
+        margin-bottom: 2rem;
+    }
+
+    &__thead {
+        background-color: v.$principal;
+        color: v.$blanco;
+        padding: 1rem;
+        text-align: left;
+        visibility: hidden;
+
+
+        @include m.max-desktop {
+            visibility: hidden;
+        }
+    }
+    &__th {
+        padding: 1rem;
+        text-align: left;
+        @include m.max-desktop {
+            margin-top: 0;
+        }
+    }
+
+    &__dato{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    &__tr {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        padding: 2rem;
+        flex: 1;
+        border-bottom: .1px solid v.$principal;
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        // &:nth-child(even){
+        //     background-color: darken(v.$gris-claro, 5);
+        // }
+    }
+    
+    &__td {
+        display: block;
+        text-align: left;
+        // width: 30%;
+        padding: 0.5rem 0;
+        position: relative;
+
+        // &::before {
+        //     content: attr(data-label);
+        //     display: block;
+        //     font-weight: bold;
+        //     margin-bottom: 0.5rem;
+        //     color: v.$principal;
+        // }
+    }
+
+    &__select {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        margin: 2rem auto;
+        
+        
+        & .btn-asiste {
+            background-color: lighten(v.$secundario, 55);
+            width: 6rem;
+            border-radius: 50%;
+            border: inset;
+            padding: 1.2rem 0;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 0.3em 0.3em, rgba(0, 0, 0, 0.25) 0px 0.3em 0.8em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;        
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        & .selected {
+            background-color: v.$principal;
+            color: v.$blanco;
+            border: ridge; 
+            transform: scale(1.12);
+            
+        }
+    }
+}

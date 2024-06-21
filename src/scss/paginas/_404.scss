@@ -1,0 +1,32 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.pagina_404 {
+    @include m.contenedor_xl;
+    &__imagen {
+        @include m.contenedor;
+        width: 80%;
+        margin: 0 auto;
+        @include m.desktop {
+            width: 40%;
+        }
+
+        & img {
+            border-radius: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+        }
+    }
+
+    &__cont {
+       @include m.contenedor-sm;
+       text-align: center;
+    }
+
+    &__enlace {
+        color: v.$principal;
+        &:hover {
+            color: darken(v.$principal, 15);
+            cursor: pointer;
+        }
+    }   
+}
