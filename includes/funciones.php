@@ -11,9 +11,16 @@ function s($html) : string {
     return $s;
 }
 
+// function pagina_actual($path) {
+//     return str_contains($_SERVER['PATH_INFO'] ?? '/', $path) ? true : false;
+// }
+
 function pagina_actual($path) {
-    return str_contains($_SERVER['PATH_INFO'] ?? '/', $path) ? true : false;
+    // Obtener PATH_INFO o REQUEST_URI y remover cualquier query string
+    $url_actual = $_SERVER['PATH_INFO'] ?? urldecode(strtok($_SERVER['REQUEST_URI'], '?')) ?? '/';
+    return str_contains($url_actual, $path) ? true : false;
 }
+
 
 function is_auth() : bool {
     session_start();
