@@ -185,7 +185,7 @@ class DashboardController {
 
         // Render a la vista 
         $router->render('organizacion/dashboard/index', [
-            'titulo' => 'Panel de Organizacion',
+            'titulo' => 'Panel de Organización',
             'registros' => $registros,
             'usuarios' => $usuarios,
             'entrenos' => $entrenos,
