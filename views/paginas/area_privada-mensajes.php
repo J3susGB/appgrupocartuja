@@ -53,7 +53,7 @@
 
     // Función para marcar un mensaje como leído
     function marcarLeido(mensaje_id) {
-        fetch('http://localhost:3000/marcar_mensaje_leido', {
+        fetch('/marcar_mensaje_leido', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
