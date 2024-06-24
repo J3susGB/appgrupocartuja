@@ -316,6 +316,7 @@ html {
 body {
   font-family: "Outfit", sans-serif;
   font-size: 1.8rem;
+  overflow-x: hidden;
 }
 
 a {
@@ -1519,7 +1520,7 @@ fieldset legend {
   gap: 1rem;
   margin: 1.5rem 0;
 }
-.formulario__label, select {
+.formulario__label, select, .formulario__input--file {
   display: block;
   font-size: 1.8rem;
   color: #255335;
@@ -1540,6 +1541,23 @@ fieldset legend {
 }
 .formulario__input--file {
   border: none;
+  display: block;
+  width: 27rem;
+  padding: 1rem;
+  border: 1px solid #255335;
+  border-radius: 0.5rem;
+  background-color: #eef9f0;
+}
+.formulario__input--file::placeholder {
+  color: rgba(37, 83, 53, 0.8);
+}
+.formulario__input--file:focus {
+  border: 2px solid #255335; /* Cambia el color del borde al enfocar */
+  outline: none; /* Elimina el resplandor predeterminado en algunos navegadores */
+  box-shadow: 0 0 10px #ade4b7; /* Añade una sombra al enfocar */
+}
+.formulario__input--file:focus {
+  cursor: pointer;
 }
 .formulario__texto {
   margin-top: 3rem;
@@ -1598,6 +1616,20 @@ input[type=date] {
   border: none;
 }
 
+.formulario__file-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario__input--file {
+  display: block;
+}
+
+/* Ocultar el mensaje predeterminado de "Ningún archivo seleccionado" */
+.formulario__input--file::file-selector-button {
+  display: none;
+}
+
 .acciones, .acciones--centrar {
   margin-top: 3rem;
   text-align: center;
@@ -1630,7 +1662,7 @@ input[type=date] {
   color: #255335;
   margin: 0;
   padding: 1rem 2rem 1rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 700;
   display: flex;
   flex-direction: row;
@@ -1754,8 +1786,8 @@ input[type=date] {
 
 .mensaje-count {
   position: absolute;
-  top: 1.4px; /* Ajusta según sea necesario */
-  right: 4.5px; /* Ajusta según sea necesario */
+  top: 3px; /* Ajusta según sea necesario */
+  right: 5.5px; /* Ajusta según sea necesario */
   color: #FFFFFF;
   font-size: 7px; /* Tamaño más pequeño */
   display: none; /* Inicialmente oculto */
@@ -2053,6 +2085,9 @@ input[type=date] {
     margin: 1.3rem;
   }
 }
+.dashboard__inputs {
+  display: block;
+}
 @media (min-width: 600px) {
   .dashboard__inputs {
     display: flex;
@@ -2078,12 +2113,20 @@ input[type=date] {
 }
 .dashboard__campo {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+@media (min-width: 600px) {
+  .dashboard__campo {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
 }
 .dashboard__campo input[type=text],
 .dashboard__campo select {
-  min-width: 23rem;
-  max-width: 24rem;
+  width: 25rem;
   height: 4.8rem;
   padding: 1rem;
   border: 1px solid #255335;
@@ -2234,6 +2277,8 @@ input[type=date] {
   }
 }
 .dashboard__boton--panel {
+  margin: 0;
+  margin-top: 2rem;
   background-color: #255335;
   padding: 1.5rem 4rem;
   color: #FFFFFF;
@@ -2467,10 +2512,6 @@ input[type=date] {
   cursor: pointer;
 }
 
-#restablecerFiltros {
-  margin: 2rem auto 5rem auto;
-}
-
 @media (min-width: 1024px) {
   .padding {
     padding-top: 1.5rem;
@@ -2519,6 +2560,11 @@ input[type=date] {
   margin-top: 2rem;
   border-bottom: solid 5px #255335;
 }
+@media (max-width: 480px) {
+  .filtros {
+    display: block;
+  }
+}
 @media (min-width: 600px) {
   .filtros {
     flex-direction: row;
@@ -2553,6 +2599,12 @@ input[type=date] {
 .table, .table-lista {
   width: 100%;
   border-collapse: collapse;
+  font-size: 1.5rem;
+}
+@media (min-width: 1200px) {
+  .table, .table-lista {
+    font-size: 1.3rem;
+  }
 }
 .table__thead {
   background-color: #255335;
@@ -2573,17 +2625,49 @@ input[type=date] {
     margin-top: 0;
   }
 }
+@media (min-width: 768px) {
+  .table__th {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .table__th {
+    font-size: 1.3rem;
+  }
+}
 .table__tr {
   padding: 2rem;
-  border-radius: 1rem;
+  min-width: 30rem;
+  margin: 0 auto;
 }
-.table__tr:nth-child(even) {
-  background-color: #e6edf4;
+@media (min-width: 480px) {
+  .table__tr {
+    min-width: 40rem;
+  }
+}
+@media (min-width: 600px) {
+  .table__tr {
+    min-width: 53rem;
+  }
+}
+@media (min-width: 1024px) {
+  .table__tr:nth-child(even) {
+    background-color: #e6edf4;
+  }
+}
+@media (min-width: 768px) {
+  .table__tr {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .table__tr {
+    font-size: 1.3rem;
+  }
 }
 @media (max-width: 1024px) {
   .table__tr {
     display: inline-block;
-    width: 120%;
     margin-bottom: 1rem;
   }
   .table__tr:nth-child(1) {
@@ -2611,6 +2695,16 @@ input[type=date] {
     padding: 0.1rem 0 0.1rem 0.1rem;
   }
 }
+@media (min-width: 768px) {
+  .table__td, .table__td--acciones {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .table__td, .table__td--acciones {
+    font-size: 1.3rem;
+  }
+}
 .table__td--acciones {
   display: flex;
   justify-content: center;
@@ -2629,13 +2723,23 @@ input[type=date] {
   font-size: 1.4rem;
   font-weight: 700;
 }
+@media (min-width: 768px) {
+  .table__accion {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 1200px) {
+  .table__accion {
+    font-size: 1.3rem;
+  }
+}
 .table__accion--editar {
   color: #319442;
   transition: 0.3ms color ease-in-out, 0.3ms border-bottom ease-in-out;
+  margin-top: 0.5rem;
 }
 .table__accion--editar:hover {
   color: #246e31;
-  border-bottom: 1px solid #246e31;
   transition: 0.3ms color ease-in-out, 0.3ms border-bottom ease-in-out;
 }
 .table__accion--eliminar {
@@ -2644,7 +2748,6 @@ input[type=date] {
 }
 .table__accion--eliminar:hover {
   color: #900000;
-  border-bottom: 1px solid #900000;
   transition: 0.3ms color ease-in-out, 0.3ms border-bottom ease-in-out;
 }
 .table__accion:hover {
@@ -2935,7 +3038,13 @@ form.fotos.table__formulario {
     opacity: 0;
   }
 }
+.bloques__asistencias {
+  width: min(95%, 160rem);
+  margin: 0 auto;
+}
+
 .asistencia {
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   transition: visibility 0.3s ease-in-out, opacity 0.3s linear, height 0.5s linear;
@@ -2971,6 +3080,8 @@ form.fotos.table__formulario {
 
 .tabla_asistencia {
   margin-bottom: 5rem;
+  width: min(95%, 160rem);
+  margin: 0 auto;
 }
 .tabla_asistencia:not(:last-child) {
   margin-bottom: 5rem;

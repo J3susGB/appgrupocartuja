@@ -2,6 +2,9 @@
 @use 'base/mixins' as m;
 
 .filtros {
+    @include m.telefono_max {
+        display: block;
+    }
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -41,6 +44,14 @@
 .table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 1.5rem;
+    // margin: 0 auto;
+    @include m.tablet {
+        
+    }
+    @include m.xl_desktop {
+        font-size: 1.3rem;
+    }
 
     &__thead {
         background-color: v.$principal;
@@ -58,22 +69,55 @@
         @include m.max-desktop {
             margin-top: 0;
         }
+        @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
     }
 
     
 
     &__tr {
         padding: 2rem;
-        border-radius: 1rem;
+        min-width: 30rem;
+        margin: 0 auto;
+        @include m.telefono {
+            min-width: 40rem;
+        }
+        @include m.tablet_small {
+            min-width: 53rem;
+        }
+        // border-radius: 1rem;
+        // width: 90%;
+    //     &:nth-child(even) {
+    //         background-color: darken(v.$gris-claro, 5);
+    //         // width: 90%;
+    //         background-size: 30rem;
+    //    } 
+    
         
-        &:nth-child(even) {
-            background-color: darken(v.$gris-claro, 5);
-       } 
+        @include m.desktop {
+            &:nth-child(even) {
+                background-color: darken(v.$gris-claro, 5);
+                // width: 90%;
+                
+           } 
+        }
+
+        @include m.tablet {
+            font-size: 1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+        
       
 
        @include m.max-desktop {
             display: inline-block;
-            width: 120%;
+            // width: 120%;
             margin-bottom: 1rem;
             
             &:nth-child(1) {
@@ -84,6 +128,7 @@
 
     &__td {
         padding: 1.5rem 1rem;
+        
 
         @include m.max-desktop {
             display: block;
@@ -104,6 +149,13 @@
             }
        }
 
+       @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
+
         &--acciones {
             @extend .table__td;
             display: flex;
@@ -114,6 +166,7 @@
                 display: flex;
                 justify-content: flex-end;
             }
+            
         }
     }
 
@@ -122,13 +175,20 @@
         text-transform: uppercase;
         font-size: 1.4rem;
         font-weight: v.$bold;
+        @include m.tablet {
+            font-size: 1.1rem;
+        }
+        @include m.xl_desktop {
+            font-size: 1.3rem;
+        }
 
         &--editar {
             color: v.$secundario;
             transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
+            margin-top: .5rem;
             &:hover {
                 color: darken(v.$secundario, 10);
-                border-bottom: 1px solid darken(v.$secundario, 10);
+                // border-bottom: 1px solid darken(v.$secundario, 10);
                 transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
             }
         }
@@ -138,7 +198,7 @@
             transition: 3ms color ease-in-out, .3ms border-bottom ease-in-out;
             &:hover {
                 color: darken(v.$rojo, 5);
-                border-bottom: 1px solid darken(v.$rojo, 5);
+                // border-bottom: 1px solid darken(v.$rojo, 5);
                 transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
             }
         }

@@ -1,7 +1,11 @@
 @use 'base/variables' as v;
 @use 'base/mixins' as m;
 
+.bloques__asistencias {
+    @include m.contenedor_xl;
+}
 .asistencia {
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
 
@@ -35,6 +39,7 @@
 
 .tabla_asistencia {
     margin-bottom: 5rem;
+    @include m.contenedor_xl;
     &:not(:last-child) {
         margin-bottom: 5rem;
     }

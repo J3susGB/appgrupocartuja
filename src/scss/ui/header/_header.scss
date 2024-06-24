@@ -13,7 +13,7 @@
         color: v.$principal;
         margin: 0;
         padding: 1rem 2rem 1rem 1rem;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         font-weight: v.$bold;
         display: flex;
         flex-direction: row;
@@ -151,8 +151,8 @@
 
 .mensaje-count {
     position: absolute;
-    top: 1.4px; /* Ajusta según sea necesario */
-    right: 4.5px; /* Ajusta según sea necesario */
+    top: 3px; /* Ajusta según sea necesario */
+    right: 5.5px; /* Ajusta según sea necesario */
     // background-color: v.$blanco;
     color: v.$blanco;
     // border-radius: 50%;

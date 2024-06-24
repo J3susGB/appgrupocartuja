@@ -33,6 +33,8 @@
             align-items: flex-start;
             gap: 1rem;
             padding: auto 2rem;
+
+
         }
     }
 
@@ -64,8 +66,31 @@
         }
         &--file {
             border: none;
+            display: block;
+            width: 27rem;
             // display: none;
+
+            padding: 1rem;
+            border: 1px solid v.$principal;
+            border-radius: .5rem;
+            background-color: lighten(v.$secundario, 57%);
+            &::placeholder {
+                color: rgba(v.$principal, .8);
+            }
+            &:focus {
+                border: 2px solid v.$principal; /* Cambia el color del borde al enfocar */
+                outline: none; /* Elimina el resplandor predeterminado en algunos navegadores */
+                box-shadow: 0 0 10px lighten(v.$secundario, 40%); /* Añade una sombra al enfocar */
+            }
+            &:focus {
+                cursor: pointer
+            }
+            @extend .formulario__label;
         }
+
+        // &__input--file::file-selector-button {
+        //     display: none;
+        // }
     }
 
     &__texto {
@@ -111,4 +136,18 @@ select {
 
 input[type="date"] {
     border: none;
+}
+
+.formulario__file-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario__input--file {
+    display: block;
+}
+
+/* Ocultar el mensaje predeterminado de "Ningún archivo seleccionado" */
+.formulario__input--file::file-selector-button {
+    display: none;
 }

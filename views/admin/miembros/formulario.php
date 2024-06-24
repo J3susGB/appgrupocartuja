@@ -90,13 +90,15 @@
 </div>
 <div class="formulario__campo">
     <label for="foto" class="formulario__label formulario__label--file">Foto</label>
-    <input 
-        type="file" 
-        class="formulario__input formulario__input--file" 
-        id="foto" 
-        name="foto" 
-        value="<?php echo $miembro->foto ?? ''; ?>"
-    />
+    <div class="formulario__file-container">
+        <input 
+            type="file" 
+            class="formulario__input formulario__input--file" 
+            id="foto" 
+            name="foto" 
+            value="<?php echo $miembro->foto ?? ''; ?>"
+        />
+    </div>
     
     <?php if(isset($miembro->foto_actual)) { ?>
         <p class="formulario__texto">Foto actual</p>

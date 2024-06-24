@@ -13,6 +13,7 @@ body {
     font-family: v.$fuente_principal;
     font-size: 1.8rem;
     // background-color: v.$gris-claro;
+    overflow-x: hidden;
 }
 a {
     text-decoration: none;
