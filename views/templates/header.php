@@ -54,7 +54,7 @@
 
     <div class="barra">
         <nav class="navegacion">
-            <a href="/nosotros" class="<?php echo pagina_actual('nosotros') ? 'navegacion__enlace--actual' : ''; ?>">Nosotros</a>
+            <a href="/nosotros" class="<?php echo pagina_actual('ros') ? 'navegacion__enlace--actual' : ''; ?>">Nosotros</a>
             <a href="/packs" class="<?php echo pagina_actual('/packs') ? 'navegacion__enlace--actual' : ''; ?>">Packs</a>
             <a href="/patrocinadores" class="<?php echo pagina_actual('/patrocinadores') ? 'navegacion__enlace--actual' : ''; ?>">Patrocinadores</a>
             <?php if(is_auth() && is_admin()) { ?>
