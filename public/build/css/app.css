@@ -3047,6 +3047,7 @@ form.fotos.table__formulario {
 
 .asistencia {
   overflow-x: hidden;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   transition: visibility 0.3s ease-in-out, opacity 0.3s linear, height 0.5s linear;
