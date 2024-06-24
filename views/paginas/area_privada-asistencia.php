@@ -1496,7 +1496,7 @@ if (!is_auth()) {
     } ?>
 <?php } ?>
 
-<script>
+<!-- <script>
     (function() {
         document.addEventListener('DOMContentLoaded', function() {
             const filtroVista = document.getElementById('vista_asistencia_privada');
@@ -1549,6 +1549,193 @@ if (!is_auth()) {
 
                     mostrarTablas();
 
+                }
+            }
+
+            function ocultarTablas() {
+                septiembre_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                septiembre_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                octubre_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                octubre_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                noviembre_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                noviembre_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                diciembre_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                diciembre_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                enero_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                enero_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                febrero_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                febrero_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                marzo_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                marzo_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                abril_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                abril_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+
+                mayo_p.forEach(element => {
+                    element.classList.add('oculto');
+                });
+                mayo_o.forEach(element => {
+                    element.classList.add('oculto');
+                });
+            }
+
+            function mostrarTablas() {
+                septiembre_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                septiembre_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                octubre_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                octubre_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                noviembre_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                noviembre_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                diciembre_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                diciembre_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                enero_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                enero_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                febrero_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                febrero_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                marzo_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                marzo_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                abril_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                abril_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+
+                mayo_p.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+                mayo_o.forEach(element => {
+                    element.classList.remove('oculto');
+                });
+            }
+        });
+    })();
+</script> -->
+
+<script>
+    (function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const filtroVista = document.getElementById('vista_asistencia_privada');
+            const selectVista = document.getElementById('vista_select_privada');
+            const generalPrivada_p = document.querySelectorAll('.general_privada_p');
+            const generalPrivada_o = document.querySelectorAll('.general_privada_o');
+            const septiembre_p = document.querySelectorAll('.septiembre__privada_p');
+            const septiembre_o = document.querySelectorAll('.septiembre__privada_o');
+            const octubre_p = document.querySelectorAll('.octubre__privada_p');
+            const octubre_o = document.querySelectorAll('.octubre__privada_o');
+            const noviembre_p = document.querySelectorAll('.noviembre__privada_p');
+            const noviembre_o = document.querySelectorAll('.noviembre__privada_o');
+            const diciembre_p = document.querySelectorAll('.diciembre__privada_p');
+            const diciembre_o = document.querySelectorAll('.diciembre__privada_o');
+            const enero_p = document.querySelectorAll('.enero__privada_p');
+            const enero_o = document.querySelectorAll('.enero__privada_o');
+            const febrero_p = document.querySelectorAll('.febrero__privada_p');
+            const febrero_o = document.querySelectorAll('.febrero__privada_o');
+            const marzo_p = document.querySelectorAll('.marzo__privada_p');
+            const marzo_o = document.querySelectorAll('.marzo__privada_o');
+            const abril_p = document.querySelectorAll('.abril__privada_p');
+            const abril_o = document.querySelectorAll('.abril__privada_o');
+            const mayo_p = document.querySelectorAll('.mayo__privada_p');
+            const mayo_o = document.querySelectorAll('.mayo__privada_o');
+
+            // Cambiar el evento de clic a change
+            selectVista.addEventListener('change', function() {
+                manejarVista();
+            });
+
+            function manejarVista() {
+                if (selectVista.value === "1") {
+                    generalPrivada_p.forEach(element => {
+                        element.classList.remove('oculto');
+                    });
+                    generalPrivada_o.forEach(element => {
+                        element.classList.remove('oculto');
+                    });
+
+                    ocultarTablas();
+
+                } else if (selectVista.value === "2") {
+                    generalPrivada_p.forEach(element => {
+                        element.classList.add('oculto');
+                    });
+                    generalPrivada_o.forEach(element => {
+                        element.classList.add('oculto');
+                    });
+
+                    mostrarTablas();
                 }
             }
 
