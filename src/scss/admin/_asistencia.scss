@@ -3,6 +3,7 @@
 
 .bloques__asistencias {
     @include m.contenedor_xl;
+    overflow-x: hidden;
 }
 .asistencia {
     overflow-x: hidden;
@@ -38,6 +39,7 @@
 }
 
 .tabla_asistencia {
+    overflow-x: hidden;
     margin-bottom: 5rem;
     @include m.contenedor_xl;
     &:not(:last-child) {

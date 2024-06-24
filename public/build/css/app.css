@@ -11,7 +11,6 @@ html {
  */
 body {
   margin: 0;
-  overflow-x: hidden;
 }
 
 /**
@@ -317,7 +316,7 @@ html {
 body {
   font-family: "Outfit", sans-serif;
   font-size: 1.8rem;
-  overflow-x: hidden ;
+  overflow-x: hidden;
 }
 
 a {
@@ -3042,6 +3041,7 @@ form.fotos.table__formulario {
 .bloques__asistencias {
   width: min(95%, 160rem);
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .asistencia {
@@ -3080,6 +3080,7 @@ form.fotos.table__formulario {
 }
 
 .tabla_asistencia {
+  overflow-x: hidden;
   margin-bottom: 5rem;
   width: min(95%, 160rem);
   margin: 0 auto;
