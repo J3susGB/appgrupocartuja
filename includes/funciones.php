@@ -32,7 +32,7 @@ function is_admin() : bool {
         session_start();
     }
     $is_admin = isset($_SESSION['admin']) && $_SESSION['admin'] === '1';
-    error_log("is_admin: " . ($is_admin ? 'true' : 'false')); // Para depuración
+    // error_log("is_admin: " . ($is_admin ? 'true' : 'false')); // Para depuración
     return $is_admin;
 }
 
@@ -41,7 +41,7 @@ function es_organizador() : bool {
         session_start();
     }
     $is_organizador = isset($_SESSION['organizador']) && $_SESSION['organizador'] === '1';
-    error_log("es_organizador: " . ($is_organizador ? 'true' : 'false')); // Para depuración
+    // error_log("es_organizador: " . ($is_organizador ? 'true' : 'false')); // Para depuración
     return $is_organizador;
 }
 
@@ -50,6 +50,6 @@ function es_directivo() : bool {
         session_start();
     }
     $is_directivo = isset($_SESSION['directivo']) && $_SESSION['directivo'] === '1';
-    error_log("es_directivo: " . ($is_directivo ? 'true' : 'false')); // Para depuración
+    // error_log("es_directivo: " . ($is_directivo ? 'true' : 'false')); // Para depuración
     return $is_directivo;
 }
