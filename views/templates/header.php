@@ -12,7 +12,7 @@
                 <a class="header__enlace" href="/login">Iniciar sesión</a>
             <?php } else { ?>
                 <form  method="POST" action="/logout">
-                    <input class="header__enlace cerrar_sesion" type="submit" value="Cerrar Cesión">
+                    <input class="header__enlace cerrar_sesion" type="submit" value="Cerrar Sesión">
                 </form>
             <?php } ?>
             
