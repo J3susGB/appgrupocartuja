@@ -25,7 +25,7 @@
                     <select class="formulario__label--select" name="talla_camiseta" id="talla_camiseta">
                         <option selected disabled value="">-- Seleccione --</option>
                         <?php foreach ($tallas as $talla) { ?>
-                            <option <?php echo $miembro->idCamiseta === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
+                            <option <?php echo isset($miembro->idCamiseta) && $miembro->idCamiseta === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -34,7 +34,7 @@
                     <select class="formulario__label--select" name="talla_calzona" id="talla_calzona">
                         <option selected disabled value="">-- Seleccione --</option>
                         <?php foreach ($tallas as $talla) { ?>
-                            <option <?php echo $miembro->idCalzona === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
+                            <option <?php echo isset($miembro->idCalzona) && $miembro->idCalzona === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -43,7 +43,7 @@
                     <select class="formulario__label--select" name="talla_chandal" id="talla_chandal">
                         <option selected disabled value="">-- Seleccione --</option>
                         <?php foreach ($tallas as $talla) { ?>
-                            <option <?php echo $miembro->idChandal === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
+                            <option <?php echo isset($miembro->idChandal) && $miembro->idChandal === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
                         <?php } ?>
                     </select>
                 </div>
@@ -52,7 +52,7 @@
                     <select class="formulario__label--select" name="talla_cortavientos" id="talla_cortavientos">
                         <option selected disabled value="">-- Seleccione --</option>
                         <?php foreach ($tallas as $talla) { ?>
-                            <option <?php echo $miembro->idCortaviento === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
+                            <option <?php echo isset($miembro->idCortaviento) && $miembro->idCortaviento === $talla->id ? 'selected' : '' ?> value="<?php echo $talla->id; ?>"><?php echo strtoupper($talla->nombre_talla); ?></option>
                         <?php } ?>
                     </select>
                 </div>

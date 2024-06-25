@@ -162,58 +162,54 @@ class PaginasController {
     }
 
     public static function area_privada_editar(Router $router) {
-        
-        if(!is_auth()) {
+    
+        if (!is_auth()) {
             header('Location: /login');
         }
-
-        if(es_directivo()) {
+    
+        if (es_directivo()) {
             header('Location: /');
         }
-
+    
+        $alertas = [];
         $id = s($_GET['id']);
-        // debuguear($_SESSION);
-
-        if($id !== $_SESSION['id']) {
+    
+        if ($id !== $_SESSION['id']) {
             header('Location: /login');
         }
-        //Traigo todos los datos de packs
+    
+        // Traigo todos los datos de packs
         $packs = Pack::all();
-        // debuguear($packs);
-
-        //Traigo todos los datos categorias
+        // Traigo todos los datos categorias
         $categorias = Categoria::all();
-        // debuguear($categorias);
-
-        //Traigo todas las tallas
+        // Traigo todas las tallas
         $tallas = Tallas::all();
-        // debuguear($tallas);
-
         // Traigo los registros de tallas del usuario autenticado
         $tallas_usuario = Tallasusuarios::all();
-        // debuguear($tallas_usuario);
-
-        //Traigo todos los registros de asistencia
+        // Traigo todos los registros de asistencia
         $asistencia = Asistencia::allAsistencia();
-
-        // Traigo toda la asistencia del usuario autenticado
+    
+        // Filtrar la asistencia del usuario autenticado
         $asistencia = array_filter($asistencia, function($tot) {
-            // Devuelve true para conservar el elemento, false para eliminarlo
             return $tot->id_usuario === $_SESSION['id'];
         });
-        
-        // debuguear($asistencia);
-
-        //Traigo todos los miembros diferentes a administradores
+    
+        // Traigo todos los miembros diferentes a administradores
         $miembros = Usuario::all_ord();
         $miembros = array_filter($miembros, function($tot) {
-            // Devuelve true para conservar el elemento, false para eliminarlo
             return $tot->admin !== "1";
         });
-        // debuguear($miembros);
-
+    
         if ($tallas_usuario) {
-            //Cruzo los datos de miembros y tallas usuarios para agregar a cada miembro sus tallas
+            // Inicializar las propiedades de tallas en los miembros
+            foreach ($miembros as $miembro) {
+                $miembro->idCamiseta = null;
+                $miembro->idCalzona = null;
+                $miembro->idChandal = null;
+                $miembro->idCortaviento = null;
+            }
+    
+            // Cruzar los datos de miembros y tallas usuarios para agregar a cada miembro sus tallas
             foreach ($miembros as $miembro) {
                 foreach ($tallas_usuario as $registro) {
                     if ($miembro->id === $registro->id_usuario) {
@@ -224,9 +220,8 @@ class PaginasController {
                     }
                 }
             }
-            // debuguear($miembros);
-
-            //Cruzo los datos de miembros y tallas para agregar a miemros el nombre de la talla
+    
+            // Cruzar los datos de miembros y tallas para agregar a miembros el nombre de la talla
             foreach ($miembros as $miembro) {
                 foreach ($tallas as $talla) {
                     if ($miembro->idCamiseta === $talla->id) {
@@ -243,195 +238,134 @@ class PaginasController {
                     }
                 }
             }
-            // debuguear($tallas_usuario);
         }
-
-         // Cruzo los miembros con las categorías para añadir a miembros el nombre de la categoría
-         foreach($miembros as $miembro) {
-            foreach($categorias as $categoria) {
-                if($miembro->categoria_id === $categoria->id) {
+    
+        // Cruzar los miembros con las categorías para añadir a miembros el nombre de la categoría
+        foreach ($miembros as $miembro) {
+            foreach ($categorias as $categoria) {
+                if ($miembro->categoria_id === $categoria->id) {
                     $miembro->nombre_categoria = $categoria->nombre_cat;
                 }
             }
         }
-
-        // Cruzo los miembros con el pack para añadir a miembros el nombre del pack
-        foreach($miembros as $miembro) {
-            foreach($packs as $pack) {
-                if($miembro->pack_id === $pack->id) {
+    
+        // Cruzar los miembros con el pack para añadir a miembros el nombre del pack
+        foreach ($miembros as $miembro) {
+            foreach ($packs as $pack) {
+                if ($miembro->pack_id === $pack->id) {
                     $miembro->nombre_pack = $pack->nombre_pack;
                     $miembro->precio_pack = $pack->precio;
                 }
             }
         }
-        // debuguear($miembros);
-
-        // Traigo todos los datos del usuario autenticado
+    
+        // Traer todos los datos del usuario autenticado
         $miembros = array_filter($miembros, function($tot) {
-            // Devuelve true para conservar el elemento, false para eliminarlo
             return $tot->id === $_SESSION['id'];
         });
-
-        // debuguear($miembros);
-
-        // Añado campo foto_actual
-        foreach($miembros as $miembro) {
+    
+        // Añadir campo foto_actual
+        foreach ($miembros as $miembro) {
             $miembro->foto_actual = $miembro->foto;
         }
-        
-        // debuguear($miembros);
-
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-            if(!is_auth()) {
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+            if (!is_auth()) {
                 header('Location: /login');
             }
-
-            //Obtener el miembro a editar:
+    
+            // Obtener el miembro a editar:
             $miembro = Usuario::find($_SESSION['id']);
-            // debuguear($miembro);
             $tallas_miembro = Tallasusuarios::find_registro_talla($_SESSION['id']);
-            // debuguear($tallas_miembro);
-
+    
             if ($tallas_miembro === null) {
-                // Si no se encontraron datos de tallas, crear un nuevo objeto Tallasusuarios
                 $tallas_miembro = new Tallasusuarios();
-                // Asignar el ID del usuario actual
                 $tallas_miembro->id_usuario = $_SESSION['id'];
             }
-
-            if( !empty($_FILES['foto']['tmp_name'])) {
-                //Crear una carpeta para las imágenes
+    
+            if (!empty($_FILES['foto']['tmp_name'])) {
+                // Crear una carpeta para las imágenes
                 $carpeta_imagenes = '../public/img/miembros';
-
-                //Si la carpeta no existe, la creará
-                if( !is_dir($carpeta_imagenes) ) {
+    
+                if (!is_dir($carpeta_imagenes)) {
                     mkdir($carpeta_imagenes, 0755, true);
                 }
-
-                //Crea las imágenes
-                $nombre_imagen = md5( uniqid( rand(), true ) );
-
+    
+                // Crear las imágenes
+                $nombre_imagen = md5(uniqid(rand(), true));
+    
                 $manager = new ImageManager(new Driver());
-
-                $imagen_png = $manager->read( $_FILES['foto']['tmp_name'] );
-                $imagen_png->scale(800,800);
-                
-                $imagen_webp = $manager->read( $_FILES['foto']['tmp_name'] );
-                $imagen_webp->scale(800,800);
-
-                $imagen_avif = $manager->read( $_FILES['foto']['tmp_name'] );
-                $imagen_avif->scale(800,800);
-
+    
+                $imagen_png = $manager->read($_FILES['foto']['tmp_name']);
+                $imagen_png->scale(800, 800);
+    
+                $imagen_webp = $manager->read($_FILES['foto']['tmp_name']);
+                $imagen_webp->scale(800, 800);
+    
+                $imagen_avif = $manager->read($_FILES['foto']['tmp_name']);
+                $imagen_avif->scale(800, 800);
+    
                 // Eliminar la foto antigua del servidor
-                if($miembro->foto_actual) {
+                if ($miembro->foto_actual) {
                     $foto_actual = $miembro->foto_actual;
                     $formatos = ['png', 'webp', 'avif'];
-                    foreach($formatos as $formato) {
+                    foreach ($formatos as $formato) {
                         $archivo = $carpeta_imagenes . '/' . $foto_actual . '.' . $formato;
-                        if(file_exists($archivo)) {
+                        if (file_exists($archivo)) {
                             unlink($archivo);
                         }
                     }
                 }
-
-                //Agregar el nombre de la imagen al POST:
+    
+                // Agregar el nombre de la imagen al POST:
                 $_POST['foto'] = $nombre_imagen;
             } else {
                 $_POST['foto'] = $miembro->foto;
             }
-
-            // debuguear($_POST);
-
-            //Datos de usuario
-            if( $miembro->nombre !== $_POST['nombre'] ) {
-                $miembro->nombre = $_POST['nombre'];
-            }
-            if( $miembro->apellido1 !== $_POST['apellido1'] ) {
-                $miembro->apellido1 = $_POST['apellido1'];
-            }
-            if( $miembro->apellido2 !== $_POST['apellido2'] ) {
-                $miembro->apellido2 = $_POST['apellido2'];
-            }
-            // if( $miembro->categoria_id !== $_POST["categoria"] ) {
-            //     $miembro->categoria_id = $_POST["categoria"];
-            // }
-            // if( $miembro->pack_id !== $_POST["usuarios"]["pack_id"] ) {
-            //     $miembro->pack_id = $_POST["usuarios"]["pack_id"];
-            // }
-            if( $miembro->telefono !== $_POST['telefono'] ) {
-                $miembro->telefono = $_POST['telefono'];
-            }
-            if( $miembro->email !== $_POST['email'] ) {
-                $miembro->email = $_POST['email'];
-            }
-            // debuguear($miembro);
-
-            //Datos de tallas del usuario
-            if($miembro->pack_id !== "1" && $miembro->pack_id !== "2") {
-                if( $tallas_miembro->camiseta !== $_POST['talla_camiseta'] ) {
+    
+            // Sincronizar los datos del miembro
+            $miembro->sincronizar($_POST);
+    
+            // Datos de tallas del usuario
+            if ($miembro->pack_id !== "1" && $miembro->pack_id !== "2") {
+                if ($tallas_miembro->camiseta !== $_POST['talla_camiseta']) {
                     $tallas_miembro->camiseta = $_POST['talla_camiseta'];
                 }
-                if( $tallas_miembro->calzona !== $_POST['talla_calzona'] ) {
+                if ($tallas_miembro->calzona !== $_POST['talla_calzona']) {
                     $tallas_miembro->calzona = $_POST['talla_calzona'];
                 }
-                if( $tallas_miembro->chandal !== $_POST['talla_chandal'] ) {
+                if ($tallas_miembro->chandal !== $_POST['talla_chandal']) {
                     $tallas_miembro->chandal = $_POST['talla_chandal'];
                 }
-                if( $tallas_miembro->Cortavientos !== $_POST['talla_cortavientos'] ) {
+                if ($tallas_miembro->Cortavientos !== $_POST['talla_cortavientos']) {
                     $tallas_miembro->Cortavientos = $_POST['talla_cortavientos'];
                 }
-            } 
-            // else {
-            //     $tallas_miembro->camiseta = 3;
-            //     $tallas_miembro->calzona = 3;
-            //     $tallas_miembro->chandal = 3;
-            //     $tallas_miembro->Cortavientos = 3;
-            // }
-            
-            
-            $miembro->sincronizar($_POST);
-            // Sincronizar los datos de tallas solo si el pack no es 1 o 2
-            // if($miembro->pack_id !== "1" && $miembro->pack_id !== "2") {
-            //     $tallas_miembro->sincronizar($_POST);
-            // }
-            // debuguear($miembro);
-
+            }
+    
             // Validar datos de usuario y tallas
             $alertas = $miembro->validar_edicion_privada();
-            // if($miembro->pack_id !== "1" && $miembro->pack_id !== "2") {
-            //     $alertas2 = $tallas_miembro->validar_tallas();
-            // } else {
-            //     $alertas2 = [];
-            // }
-            
-
-            // $alertas = array_merge($alertas, $alertas2);
-            
-            // debuguear($alertas);
-
-            if(empty($alertas)) {
-
-                if(isset($nombre_imagen)) {
-                    //Guardar las imágenes:
+    
+            if (empty($alertas)) {
+    
+                if (isset($nombre_imagen)) {
+                    // Guardar las imágenes
                     $imagen_png->toPng()->save($carpeta_imagenes . '/' . $nombre_imagen . '.png');
                     $imagen_webp->toWebp()->save($carpeta_imagenes . '/' . $nombre_imagen . '.webp');
                     $imagen_avif->toAvif()->save($carpeta_imagenes . '/' . $nombre_imagen . '.avif');
                 }
     
                 $resultado = $miembro->guardar();
-                // $resultado2 = $tallas_miembro->guardar();
-
-                if( $resultado) {
+    
+                if ($resultado) {
                     sleep(1.5);
                     header('Location: /area_privada');
                     exit();
-                } 
-            } 
+                }
+            }
         }
-
-        // debuguear($miembros);
-        //Router a la vista
+    
+        // Router a la vista
         $router->render('paginas/area_privada-editar', [
             'titulo' => 'Editar datos de usuario',
             'alertas' => $alertas,
@@ -441,6 +375,7 @@ class PaginasController {
             'tallas' => $tallas
         ]);
     }
+    
 
     public static function area_privada_editar_talla(Router $router) {
         
@@ -452,6 +387,8 @@ class PaginasController {
             header('Location: /');
         }
 
+        $alertas = [];
+
         $id = s($_GET['id']);
         // debuguear($_SESSION);
 
@@ -509,18 +446,17 @@ class PaginasController {
 
             //Cruzo los datos de miembros y tallas para agregar a miemros el nombre de la talla
             foreach ($miembros as $miembro) {
-                foreach ($tallas as $talla) {
-                    if ($miembro->idCamiseta === $talla->id) {
-                        $miembro->talla_camiseta = $talla->nombre_talla;
-                    }
-                    if ($miembro->idCalzona === $talla->id) {
-                        $miembro->talla_calzona = $talla->nombre_talla;
-                    }
-                    if ($miembro->idChandal === $talla->id) {
-                        $miembro->talla_chandal = $talla->nombre_talla;
-                    }
-                    if ($miembro->idCortaviento === $talla->id) {
-                        $miembro->talla_cortavientos = $talla->nombre_talla;
+                foreach ($tallas_usuario as $registro) {
+                    if ($miembro->id === $registro->id_usuario) {
+                        $miembro->idCamiseta = isset($miembro->idCamiseta) ? $miembro->idCamiseta : null;
+                        $miembro->idCalzona = isset($miembro->idCalzona) ? $miembro->idCalzona : null;
+                        $miembro->idChandal = isset($miembro->idChandal) ? $miembro->idChandal : null;
+                        $miembro->idCortaviento = isset($miembro->idCortaviento) ? $miembro->idCortaviento : null;
+            
+                        $miembro->idCamiseta = $registro->camiseta;
+                        $miembro->idCalzona = $registro->calzona;
+                        $miembro->idChandal = $registro->chandal;
+                        $miembro->idCortaviento = $registro->Cortavientos;
                     }
                 }
             }

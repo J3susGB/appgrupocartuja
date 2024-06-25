@@ -1503,6 +1503,7 @@ class APIController {
 
         echo json_encode($cuentas);
     }  
+    
 
     public static function mensajes() {
         session_start();
@@ -1527,16 +1528,6 @@ class APIController {
             http_response_code(200);
             exit;
         }
-    
-        // Obtener todos los mensajes desde la API externa
-        // // Obtener el esquema (http o https)
-        // $scheme = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-
-        // // Obtener el nombre del host
-        // $host = $_SERVER['HTTP_HOST'];
-
-        // // Construir la URL de origen
-        // $origin = $scheme . '://' . $host;
 
         // $url = $origin . '/api/mensajes';
         $url = '/api/mensajes';
@@ -1597,44 +1588,44 @@ class APIController {
         }
     }
 
-        public static function marcarMensajeLeido() {
-            session_start();
-        
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $usuario_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-                if (!$usuario_id) {
-                    http_response_code(401);
-                    echo json_encode(['error' => 'No autorizado']);
-                    exit;
-                }
-        
-                $input = file_get_contents('php://input');
-                $data = json_decode($input, true);
-        
-                if (!isset($data['mensaje_id'])) {
-                    http_response_code(400);
-                    echo json_encode(['error' => 'ID de mensaje no proporcionado']);
-                    exit;
-                }
-        
-                $mensaje_id = $data['mensaje_id'];
-        
-                try {
-                    $mensajeLeido = new MensajesLeidos([
-                        'usuario_id' => $usuario_id,
-                        'mensaje_id' => $mensaje_id,
-                        'leido' => 1
-                    ]);
-                    $mensajeLeido->guardar();
-        
-                    echo json_encode(['success' => true]);
-                } catch (\Exception $e) {
-                    http_response_code(500);
-                    echo json_encode(['error' => 'Error al marcar como leído: ' . $e->getMessage()]);
-                }
-            } else {
-                http_response_code(405);
-                echo json_encode(['error' => 'Método no permitido']);
+    public static function marcarMensajeLeido() {
+        session_start();
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $usuario_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+            if (!$usuario_id) {
+                http_response_code(401);
+                echo json_encode(['error' => 'No autorizado']);
+                exit;
             }
+    
+            $input = file_get_contents('php://input');
+            $data = json_decode($input, true);
+    
+            if (!isset($data['mensaje_id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'ID de mensaje no proporcionado']);
+                exit;
+            }
+    
+            $mensaje_id = $data['mensaje_id'];
+    
+            try {
+                $mensajeLeido = new MensajesLeidos([
+                    'usuario_id' => $usuario_id,
+                    'mensaje_id' => $mensaje_id,
+                    'leido' => 1
+                ]);
+                $mensajeLeido->guardar();
+    
+                echo json_encode(['success' => true]);
+            } catch (\Exception $e) {
+                http_response_code(500);
+                echo json_encode(['error' => 'Error al marcar como leído: ' . $e->getMessage()]);
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(['error' => 'Método no permitido']);
         }
+    }
     }
