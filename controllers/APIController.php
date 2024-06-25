@@ -238,7 +238,38 @@ class APIController {
 
         //Me traigo todos los registros por categorías
 
-        //1- Arbitro primera división
+        // //1- Arbitro primera división
+        // $primera_division = Usuario::whereAll('categoria_id', "1");
+        // // Filtra miembros para eliminar aquellos que sean admin y directivos
+        // $primera_division = array_filter($primera_division, function($tot) {
+        //     // Devuelve true para conservar el elemento, false para eliminarlo
+        //     return $tot->admin !== "1" && $tot->directivo !== '1';
+        // });
+        // $n_primera_division = count($primera_division);
+        // $n_primera_division= strval($n_primera_division);
+        // // debuguear($primera_division);
+
+        // $a_prim_div = [];
+        // foreach($primera_division as $p) {
+        //     if($p->pack_id === "1") {
+        //         $a_prim_div['entrenos']++;
+        //     }
+        //     if($p->pack_id === "2") {
+        //         $a_prim_div['cenas']++;
+        //     }
+        //     if($p->pack_id === "3") {
+        //         $a_prim_div['ropa']++;
+        //     }
+        //     if($p->pack_id === "4") {
+        //         $a_prim_div['completo']++;
+        //     }
+        //     if($p->pack_id === "5") {
+        //         $a_prim_div['especial']++;
+        //     }
+        // }
+        // // debuguear($a_prim_div);
+
+        //1- Árbitro primera división
         $primera_division = Usuario::whereAll('categoria_id', "1");
         // Filtra miembros para eliminar aquellos que sean admin y directivos
         $primera_division = array_filter($primera_division, function($tot) {
@@ -246,10 +277,10 @@ class APIController {
             return $tot->admin !== "1" && $tot->directivo !== '1';
         });
         $n_primera_division = count($primera_division);
-        $n_primera_division= strval($n_primera_division);
+        $n_primera_division = strval($n_primera_division);
         // debuguear($primera_division);
 
-        $a_prim_div = [];
+        $a_prim_div = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($primera_division as $p) {
             if($p->pack_id === "1") {
                 $a_prim_div['entrenos']++;
@@ -269,6 +300,7 @@ class APIController {
         }
         // debuguear($a_prim_div);
 
+
         //2- Asistente primera división
         $aprimera_division = Usuario::whereAll('categoria_id', "2");
         // Filtra miembros para eliminar aquellos que sean admin y directivos
@@ -280,7 +312,7 @@ class APIController {
         $n_aprimera_division= strval($n_aprimera_division);
         // debuguear($aprimera_division);
 
-        $aa_prim_div = [];
+        $aa_prim_div = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($aprimera_division as $p) {
             if($p->pack_id === "1") {
                 $aa_prim_div['entrenos']++;
@@ -311,7 +343,7 @@ class APIController {
         $n_segunda_division= strval($n_segunda_division);
         // debuguear($aprimera_division);
 
-        $a_seg_div = [];
+        $a_seg_div = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($segunda_division as $p) {
             if($p->pack_id === "1") {
                 $a_seg_div['entrenos']++;
@@ -342,7 +374,7 @@ class APIController {
         $n_asegunda_division= strval($n_asegunda_division);
         // debuguear($aprimera_division);
 
-        $aa_seg_div = [];
+        $aa_seg_div = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($asegunda_division as $p) {
             if($p->pack_id === "1") {
                 $aa_seg_div['entrenos']++;
@@ -373,7 +405,7 @@ class APIController {
         $n_primera_RFEF= strval($n_primera_RFEF);
         // debuguear($aprimera_division);
 
-        $a_primera_rfef = [];
+        $a_primera_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($primera_RFEF as $p) {
             if($p->pack_id === "1") {
                 $a_primera_rfef['entrenos']++;
@@ -404,7 +436,7 @@ class APIController {
         $n_aprimera_RFEF= strval($n_aprimera_RFEF);
         // debuguear($aprimera_division);
 
-        $aa_primera_rfef = [];
+        $aa_primera_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($aprimera_RFEF as $p) {
             if($p->pack_id === "1") {
                 $aa_primera_rfef['entrenos']++;
@@ -435,7 +467,7 @@ class APIController {
         $n_segunda_RFEF= strval($n_segunda_RFEF);
         // debuguear($aprimera_division);
 
-        $a_segunda_rfef = [];
+        $a_segunda_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($segunda_RFEF as $p) {
             if($p->pack_id === "1") {
                 $a_segunda_rfef['entrenos']++;
@@ -466,7 +498,7 @@ class APIController {
         $n_asegunda_RFEF= strval($n_asegunda_RFEF);
         // debuguear($aprimera_division);
 
-        $aa_segunda_rfef = [];
+        $aa_segunda_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($asegunda_RFEF as $p) {
             if($p->pack_id === "1") {
                 $aa_segunda_rfef['entrenos']++;
@@ -497,7 +529,7 @@ class APIController {
         $n_tercera_RFEF= strval($n_tercera_RFEF);
         // debuguear($aprimera_division);
 
-        $a_tercera_rfef = [];
+        $a_tercera_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($tercera_RFEF as $p) {
             if($p->pack_id === "1") {
                 $a_tercera_rfef['entrenos']++;
@@ -528,7 +560,7 @@ class APIController {
         $n_atercera_RFEF= strval($n_atercera_RFEF);
         // debuguear($aprimera_division);
 
-        $as_tercera_rfef = [];
+        $as_tercera_rfef = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($atercera_RFEF as $p) {
             if($p->pack_id === "1") {
                 $as_tercera_rfef['entrenos']++;
@@ -559,7 +591,7 @@ class APIController {
         $n_division_honor= strval($n_division_honor);
         // debuguear($division_honor);
 
-        $dh = [];
+        $dh = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($division_honor as $p) {
             if($p->pack_id === "1") {
                 $dh['entrenos']++;
@@ -592,7 +624,7 @@ class APIController {
         // debuguear($provincial);
         
 
-        $provinciales = [];
+        $provinciales = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($provincial as $p) {
             if($p->pack_id === "1") {
                 $provinciales['entrenos']++;
@@ -623,7 +655,7 @@ class APIController {
         $n_oficial= strval($n_oficial);
         // debuguear($aprimera_division);
 
-        $oficiales = [];
+        $oficiales = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($oficial as $p) {
             if($p->pack_id === "1") {
                 $oficiales['entrenos']++;
@@ -654,7 +686,7 @@ class APIController {
         $n_auxiliar= strval($n_auxiliar);
         // debuguear($aprimera_division);
 
-        $auxiliares = [];
+        $auxiliares = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($auxiliar as $p) {
             if($p->pack_id === "1") {
                 $auxiliares['entrenos']++;
@@ -685,7 +717,7 @@ class APIController {
         $n_base= strval($n_base);
         // debuguear($aprimera_division);
 
-        $fb = [];
+        $fb = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($base as $p) {
             if($p->pack_id === "1") {
                 $fb['entrenos']++;
@@ -716,7 +748,7 @@ class APIController {
         $n_rugby= strval($n_rugby);
         // debuguear($aprimera_division);
 
-        $rgb = [];
+        $rgb = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($rugby as $p) {
             if($p->pack_id === "1") {
                 $rgb['entrenos']++;
@@ -747,7 +779,7 @@ class APIController {
         $n_retirado= strval($n_retirado);
         // debuguear($aprimera_division);
 
-        $reti = [];
+        $reti = ['entrenos' => 0, 'cenas' => 0, 'ropa' => 0, 'completo' => 0, 'especial' => 0];
         foreach($retirado as $p) {
             if($p->pack_id === "1") {
                 $reti['entrenos']++;
