@@ -59,7 +59,8 @@ class Email {
         $mail->SMTPAuth = true;
         $mail->Port = $_ENV['EMAIL_PORT'];
         $mail->Username = $_ENV['EMAIL_USER'];
-        $mail->Password = $_ENV['EMAIL_PASS'];
+        // $mail->Password = $_ENV['EMAIL_PASS'];
+        $mail->Password = 'GHKD1LA9v05wqIn8';
     
         $mail->setFrom('arbitrosdeportistascartuja@gmail.com');
         $mail->addAddress($this->email, $this->nombre);
