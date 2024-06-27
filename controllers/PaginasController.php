@@ -433,6 +433,11 @@ class PaginasController {
         if ($tallas_usuario) {
             //Cruzo los datos de miembros y tallas usuarios para agregar a cada miembro sus tallas
             foreach ($miembros as $miembro) {
+                $miembro->idCamiseta = null;
+                $miembro->idCalzona = null;
+                $miembro->idChandal = null;
+                $miembro->idCortaviento = null;
+
                 foreach ($tallas_usuario as $registro) {
                     if ($miembro->id === $registro->id_usuario) {
                         $miembro->idCamiseta = $registro->camiseta;
@@ -705,6 +710,10 @@ class PaginasController {
 
         //Cruzo los datos de miembros y tallas usuarios para agregar a cada miembro sus tallas
         foreach($miembros as $miembro) {
+            $miembro->idCamiseta = null;
+            $miembro->idCalzona = null;
+            $miembro->idChandal = null;
+            $miembro->idCortaviento = null;
             foreach($tallas_usuario as $registro) {
                 if($miembro->id === $registro->id_usuario) {
                     $miembro->idCamiseta = $registro->camiseta;
@@ -718,6 +727,10 @@ class PaginasController {
 
         //Cruzo los datos de miembros y tallas para agregar a miemros el nombre de la talla
         foreach($miembros as $miembro) {
+            $miembro->talla_camiseta = null;
+            $miembro->talla_calzona = null;
+            $miembro->talla_chandal = null;
+            $miembro->talla_cortavientos = null;
             foreach($tallas as $talla) {
                 if($miembro->idCamiseta === $talla->id) {
                     $miembro->talla_camiseta = $talla->nombre_talla;
@@ -737,6 +750,7 @@ class PaginasController {
 
          // Cruzo los miembros con las categorías para añadir a miembros el nombre de la categoría
          foreach($miembros as $miembro) {
+            $miembro->nombre_categoria = null;
             foreach($categorias as $categoria) {
                 if($miembro->categoria_id === $categoria->id) {
                     $miembro->nombre_categoria = $categoria->nombre_cat;
@@ -746,6 +760,8 @@ class PaginasController {
 
         // Cruzo los miembros con el pack para añadir a miembros el nombre del pack
         foreach($miembros as $miembro) {
+            $miembro->nombre_pack = null;
+            $miembro->precio_pack = null;
             foreach($packs as $pack) {
                 if($miembro->pack_id === $pack->id) {
                     $miembro->nombre_pack = $pack->nombre_pack;
