@@ -51,6 +51,12 @@ class Email {
     }
 
     public function enviarInstrucciones() {
+        // Cargar las variables de entorno si no se han cargado
+        if (empty($_ENV['EMAIL_HOST'])) {
+            require __DIR__ . '/../vendor/autoload.php';
+            $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+            $dotenv->load();
+        }
 
         // create a new object
         $mail = new PHPMailer();
@@ -60,7 +66,7 @@ class Email {
         $mail->Port = $_ENV['EMAIL_PORT'];
         $mail->Username = $_ENV['EMAIL_USER'];
         $mail->Password = $_ENV['EMAIL_PASS'];
-    
+
         $mail->setFrom('arbitrosdeportistascartuja@gmail.com');
         $mail->addAddress($this->email, $this->nombre);
         $mail->Subject = 'REESTABLECER CONTRASEÑA';
@@ -80,6 +86,8 @@ class Email {
         $mail->Body = $contenido;
 
         //Enviar el mail
-        $mail->send();
+        if(!$mail->send()) {
+            error_log('Error enviando email: ' . $mail->ErrorInfo);
+        }
     }
 }
