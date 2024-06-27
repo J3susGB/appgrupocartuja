@@ -15,6 +15,7 @@ class AuthController {
     public static function login(Router $router) {
 
         $alertas = [];
+        $usuario = null;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
