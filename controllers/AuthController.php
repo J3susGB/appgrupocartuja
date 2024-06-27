@@ -38,7 +38,7 @@ class AuthController {
                         $_SESSION['nombre'] = $usuario->nombre;
                         $_SESSION['apellido1'] = $usuario->apellido1;
                         $_SESSION['apellido2'] = $usuario->apellido2;
-                        $_SESSION['categoria'] = $usuario->categoria;
+                        $_SESSION['categoria'] = $usuario->categoria_id;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['admin'] = $usuario->admin ?? null;
                         $_SESSION['organizador'] = $usuario->organizador ?? null;
