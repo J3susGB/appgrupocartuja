@@ -4,8 +4,6 @@
 
     <?php
         require_once __DIR__ . '/../templates/alertas.php';
-
-        // var_dump($_ENV);
     ?>
 
     <form method="POST" action="/olvide" class="formulario">
