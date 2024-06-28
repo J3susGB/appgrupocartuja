@@ -189,6 +189,11 @@ class PaginasController {
         // Traigo todos los registros de asistencia
         $asistencia = Asistencia::allAsistencia();
     
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         // Filtrar la asistencia del usuario autenticado
         $asistencia = array_filter($asistencia, function($tot) {
             return $tot->id_usuario === $_SESSION['id'];
@@ -259,6 +264,11 @@ class PaginasController {
             }
         }
     
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         // Traer todos los datos del usuario autenticado
         $miembros = array_filter($miembros, function($tot) {
             return $tot->id === $_SESSION['id'];
