@@ -35,7 +35,7 @@
                             <i class="download fa-solid fa-eye" data-nombre="<?php echo $plan->asunto; ?>" data-fecha="<?php echo $plan->cuerpo; ?>"></i>
                         </td>
                         <td class="table__td--acciones">
-                            <a class=" editar_msj table__accion table__accion--editar" href="/admin/dashboard/editar-mensaje?id=<?php echo $plan->id; ?>">
+                            <a id="editar_msj" class="table__accion table__accion--editar" href="/admin/dashboard/editar-mensaje?id=<?php echo $plan->id; ?>">
                                 <i class="fa-solid fa-user-pen"></i>
                                 Editar
                             </a>

@@ -1450,10 +1450,6 @@ fieldset legend {
   font-weight: bold;
 }
 
-.editar_msj {
-  margin-top: 3px !important;
-}
-
 .pagina_404 {
   width: min(95%, 160rem);
   margin: 0 auto;
@@ -2741,7 +2737,7 @@ input[type=date] {
 .table__accion--editar {
   color: #319442;
   transition: 0.3ms color ease-in-out, 0.3ms border-bottom ease-in-out;
-  margin-top: 0.5rem;
+  margin-top: 1px;
 }
 .table__accion--editar:hover {
   color: #246e31;

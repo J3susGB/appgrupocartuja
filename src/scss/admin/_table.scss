@@ -185,7 +185,7 @@
         &--editar {
             color: v.$secundario;
             transition: .3ms color ease-in-out, .3ms border-bottom ease-in-out;
-            margin-top: .5rem;
+            margin-top: 1px;
             &:hover {
                 color: darken(v.$secundario, 10);
                 // border-bottom: 1px solid darken(v.$secundario, 10);
