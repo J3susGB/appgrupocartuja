@@ -1,4 +1,5 @@
 <?php
+    $alertas = $alertas ?? [];
     foreach($alertas as $key => $alerta) {
         foreach($alerta as $mensaje) {
 ?>
