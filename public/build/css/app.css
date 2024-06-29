@@ -1450,6 +1450,10 @@ fieldset legend {
   font-weight: bold;
 }
 
+.editar_msj {
+  margin-top: 3px !important;
+}
+
 .pagina_404 {
   width: min(95%, 160rem);
   margin: 0 auto;
