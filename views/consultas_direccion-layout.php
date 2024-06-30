@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADCS - <?php echo $titulo; ?></title>
+    <meta name="keywords" content="Entrenamientos árbitros árbitras pruebas físicas controles físicos">
+    <meta name="description" content="Web de gestión del Grupo de Árbitros y Árbitras deportistas de Cartuja. Este Grupo está formado por personas que son árbitros y árbitras, que entrenan a diario con entrenamientos personalizados enfocados 100% en pasar los controles físicos diseñados por el Comité Técnico de Árbitros Español y de Andalucía">
+    <meta name="author" content="Jesús Gómez Beltrán">
+    <link rel="icon" href="/build/img/logo384.png" type="image/png"> <!--Icono de la pestaña del navegador-->
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Grupo de entrenamiento de Árbitros y Árbitras Deportistas de Cartuja">
+    <meta property="og:description" content="Web de gestión del Grupo de Árbitros y Árbitras deportistas de Cartuja. Este Grupo está formado por personas que son árbitros y árbitras, que entrenan a diario con entrenamientos personalizados enfocados 100% en pasar los controles físicos diseñados por el Comité Técnico de Árbitros Español y de Andalucía">
+    <meta property="og:image" content="/build/img/logo384.png">
+    <meta property="og:url" content="https://adcs.es">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="ADCS">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
