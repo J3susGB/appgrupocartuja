@@ -55,6 +55,12 @@ class PaginasController {
     }
 
     public static function area_privada(Router $router) {
+
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         if(!is_auth()) {
             header('Location: /login');
         }
