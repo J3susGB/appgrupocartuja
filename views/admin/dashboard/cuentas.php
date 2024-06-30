@@ -122,19 +122,6 @@
                         <td id="bal" class="table__td" data-label="Balance">
                             <?php echo $cuenta->balance. " €"; ?>
                         </td>
-                        <!-- <td class="table__td--acciones">
-                            <a class="table__accion table__accion--editar" href="/admin/dashboard/editar-cuentas?id=<?php echo $cuenta->id; ?>">
-                                <i class="fa-solid fa-user-pen"></i>
-                                Editar
-                            </a>
-                            <form method="POST" action="/admin/miembros/eliminar" class="table__formulario">
-                                <input type="hidden" name="id" value="<?php echo $miembro->id ?>">
-                                <button class="table__accion table__accion--eliminar" type="submit">
-                                    <i class="fa-solid fa-circle-xmark"></i>
-                                    Eliminar
-                                </button>
-                            </form>
-                        </td> -->
                     </tr>
                 <?php } ?> 
             </tbody>
