@@ -397,6 +397,11 @@ class PaginasController {
             header('Location: /');
         }
 
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $alertas = [];
 
         $id = s($_GET['id']);
@@ -612,6 +617,11 @@ class PaginasController {
             header('Location: /');
         }
 
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         $id = s($_GET['id']);
         // debuguear($_SESSION);
 
@@ -1875,6 +1885,10 @@ class PaginasController {
         if (!is_auth() || es_directivo()) {
             header('Location: /login');
             exit;
+        }
+        //Inicio sesión para que se traiga el dato de $_Session['id']
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
     
         $usuario_id = $_SESSION['id'];
