@@ -25,6 +25,7 @@ class Email {
          $mail->Host = $_ENV['EMAIL_HOST'];
          $mail->SMTPAuth = true;
          $mail->Port = $_ENV['EMAIL_PORT'];
+         $mail->SMTPSecure = 'tls';
          $mail->Username = $_ENV['EMAIL_USER'];
          $mail->Password = $_ENV['EMAIL_PASS'];
      
@@ -58,6 +59,7 @@ class Email {
         $mail->Host = $_ENV['EMAIL_HOST'];
         $mail->SMTPAuth = true;
         $mail->Port = $_ENV['EMAIL_PORT'];
+        $mail->SMTPSecure = 'tls';
         $mail->Username = $_ENV['EMAIL_USER'];
         // $mail->Password = $_ENV['EMAIL_PASS'];
         $mail->Password = $_ENV['EMAIL_PASS'];
