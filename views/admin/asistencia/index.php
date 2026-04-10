@@ -6,6 +6,12 @@
 
 <h2 class="dashboard__heading"><?php echo $titulo ?></h2>
 
+<div class="dashboard__acciones">
+    <a href="/admin/asistencia/exportar-excel" class="dashboard__boton--panel">
+        <i class="fa-solid fa-file-excel"></i> Descargar Excel
+    </a>
+</div>
+
 <div id="filtros" class="dashboard__filtros asistencia">
     <div id="vista_asistencia" class="dashboard__campo dashboard__inputs dashboard__inputs--text">
         <h3>Vista:</h3>

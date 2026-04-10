@@ -111,6 +111,7 @@ $router->get('/api/mensajes', [APIController::class, 'mensajes']);
 
 
 $router->get('/admin/asistencia', [AsistenciaController::class, 'index']);
+$router->get('/admin/asistencia/exportar-excel', [AsistenciaController::class, 'exportarExcel']);
 $router->get('/admin/registrados/lista', [AsistenciaController::class, 'lista']);
 $router->post('/admin/registrados/lista', [AsistenciaController::class, 'lista']);
 

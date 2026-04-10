@@ -3081,6 +3081,18 @@ form.fotos.table__formulario {
   }
 }
 
+.dashboard__acciones {
+  width: min(95%, 160rem);
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+@media (min-width: 1024px) {
+  .dashboard__acciones {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
 .tabla_asistencia {
   overflow-x: hidden;
   margin-bottom: 5rem;

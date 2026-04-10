@@ -8,6 +8,11 @@ use Model\Turnos;
 use Model\Usuario;
 use Model\Categoria;
 use Model\Asistencia;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
 class AsistenciaController {
 
@@ -1076,6 +1081,155 @@ class AsistenciaController {
             'total_may_ofi'=> $total_may_ofi
 
         ]);
+    }
+
+    public static function exportarExcel(Router $router) {
+        if(!is_admin()) {
+            header('Location: /login');
+            return;
+        }
+
+        // Traer todos los registros de asistencia
+        $asistencia = Asistencia::allAsistencia();
+
+        // Traer todos los miembros (sin admins)
+        $miembros = Usuario::all_ord();
+        $miembros = array_filter($miembros, fn($m) => $m->admin !== "1");
+
+        // Añadir nombre completo y mes a cada registro
+        foreach($asistencia as $as) {
+            foreach($miembros as $mi) {
+                if($as->id_usuario === $mi->id) {
+                    $as->apellidos_nombre = $mi->apellido1 . " " . $mi->apellido2 . " " . $mi->nombre;
+                }
+            }
+            $fecha_formateada = date("y-m-d", strtotime(str_replace('/', '-', $as->fecha)));
+            $as->mes = date('m', strtotime($fecha_formateada));
+        }
+
+        $meses_config = [
+            '09' => 'Septiembre',
+            '10' => 'Octubre',
+            '11' => 'Noviembre',
+            '12' => 'Diciembre',
+            '01' => 'Enero',
+            '02' => 'Febrero',
+            '03' => 'Marzo',
+            '04' => 'Abril',
+            '05' => 'Mayo',
+        ];
+
+        // Calcular totales por categoría, persona y mes
+        $calcularTotales = function($id_categoria) use ($asistencia, $meses_config) {
+            $nombres = [];
+            foreach($asistencia as $as) {
+                if(isset($as->apellidos_nombre) && $as->id_categoria === $id_categoria) {
+                    $nombres[$as->apellidos_nombre] = true;
+                }
+            }
+            $nombres = array_keys($nombres);
+            sort($nombres);
+
+            $totales = [];
+            foreach($nombres as $nombre) {
+                $fila = ['nombre' => $nombre, 'total' => 0];
+                foreach(array_keys($meses_config) as $mes_num) {
+                    $count = 0;
+                    foreach($asistencia as $as) {
+                        if(isset($as->apellidos_nombre)
+                            && $as->apellidos_nombre === $nombre
+                            && $as->id_categoria === $id_categoria
+                            && $as->mes === $mes_num
+                            && $as->asiste == "1"
+                        ) {
+                            $count++;
+                        }
+                    }
+                    $fila[$mes_num] = $count;
+                    $fila['total'] += $count;
+                }
+                $totales[] = $fila;
+            }
+            return $totales;
+        };
+
+        $datos_prov = $calcularTotales('12');
+        $datos_ofi  = $calcularTotales('13');
+
+        // Crear el libro Excel
+        $spreadsheet = new Spreadsheet();
+        $spreadsheet->getProperties()
+            ->setTitle('Asistencia')
+            ->setCreator('Panel Admin');
+
+        $estiloEncabezado = [
+            'font'      => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
+            'fill'      => ['fillType' => Fill::FILL_SOLID, 'startColor' => ['rgb' => '1F4E79']],
+            'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
+            'borders'   => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]],
+        ];
+        $estiloFila = [
+            'borders'   => ['allBorders' => ['borderStyle' => Border::BORDER_THIN]],
+            'alignment' => ['horizontal' => Alignment::HORIZONTAL_CENTER],
+        ];
+
+        $llenarHoja = function($hoja, $titulo_hoja, $datos) use ($meses_config, $estiloEncabezado, $estiloFila) {
+            $hoja->setTitle($titulo_hoja);
+
+            // Encabezados
+            $col = 1;
+            $hoja->setCellValue([$col++, 1], 'Nombre');
+            foreach($meses_config as $nombre_mes) {
+                $hoja->setCellValue([$col++, 1], $nombre_mes);
+            }
+            $hoja->setCellValue([$col, 1], 'Total');
+
+            $ultima_col_letra = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($col);
+            $hoja->getStyle("A1:{$ultima_col_letra}1")->applyFromArray($estiloEncabezado);
+
+            // Datos
+            $fila = 2;
+            foreach($datos as $registro) {
+                $col = 1;
+                $hoja->setCellValue([$col++, $fila], $registro['nombre']);
+                foreach(array_keys($meses_config) as $mes_num) {
+                    $hoja->setCellValue([$col++, $fila], $registro[$mes_num]);
+                }
+                $hoja->setCellValue([$col, $fila], $registro['total']);
+                $hoja->getStyle("A{$fila}:{$ultima_col_letra}{$fila}")->applyFromArray($estiloFila);
+                $hoja->getStyle("A{$fila}")->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
+                $fila++;
+            }
+
+            // Ajustar ancho de columnas
+            $hoja->getColumnDimension('A')->setWidth(30);
+            for($c = 2; $c <= $col; $c++) {
+                $letra = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::stringFromColumnIndex($c);
+                $hoja->getColumnDimension($letra)->setWidth(14);
+            }
+        };
+
+        // Hoja 1: Provinciales
+        $hoja_prov = $spreadsheet->getActiveSheet();
+        $llenarHoja($hoja_prov, 'Provinciales', $datos_prov);
+
+        // Hoja 2: Oficiales
+        $hoja_ofi = $spreadsheet->createSheet();
+        $llenarHoja($hoja_ofi, 'Oficiales', $datos_ofi);
+
+        $spreadsheet->setActiveSheetIndex(0);
+
+        // Enviar como descarga
+        $fecha_hoy = date('Y-m-d');
+        $nombre_archivo = "asistencia_{$fecha_hoy}.xlsx";
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header("Content-Disposition: attachment; filename=\"{$nombre_archivo}\"");
+        header('Cache-Control: max-age=0');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('php://output');
+        exit;
     }
 
     public static function index_org(Router $router) {

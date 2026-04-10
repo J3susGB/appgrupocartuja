@@ -39,6 +39,15 @@
     }
 }
 
+.dashboard__acciones {
+    @include m.contenedor_xl;
+    margin-bottom: 2rem;
+    @include m.desktop {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
 .tabla_asistencia {
     overflow-x: hidden;
     margin-bottom: 5rem;

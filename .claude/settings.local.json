@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"^[^/]*$|views|controllers|public\")",
+      "Bash(composer require:*)",
+      "Bash(npx gulp:*)",
+      "Bash(php -r 'require '\\\\''vendor/autoload.php'\\\\''; use PhpOffice\\\\PhpSpreadsheet\\\\Spreadsheet; $s = new Spreadsheet\\(\\); echo '\\\\''OK'\\\\'';')",
+      "Bash(php -r ':*)",
+      "Bash(php -l controllers/AsistenciaController.php)"
+    ]
+  }
+}

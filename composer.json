@@ -18,6 +18,7 @@
     "require": {
         "phpmailer/phpmailer": "^6.5",
         "vlucas/phpdotenv": "^5.5",
-        "intervention/image": "^3.6"
+        "intervention/image": "^3.6",
+        "phpoffice/phpspreadsheet": "^5.6"
     }
 }
