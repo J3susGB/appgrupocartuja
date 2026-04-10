@@ -53,6 +53,7 @@ class MemoriaController {
         // debuguear($documento);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             if (!is_admin()) {
                 header('Location: /login');
             }

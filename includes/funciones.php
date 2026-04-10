@@ -38,14 +38,17 @@ function csrf_field() : string {
     return '<input type="hidden" name="csrf_token" value="' . csrf_token() . '">';
 }
 
-// Valida el token CSRF del POST; mata la request si no coincide
+// Valida el token CSRF del POST o de la cabecera X-CSRF-Token (para AJAX)
 function csrf_verificar() : void {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-    $token_post    = $_POST['csrf_token'] ?? '';
+    // Acepta el token tanto del cuerpo del formulario como de la cabecera HTTP (AJAX)
+    $token_request = $_POST['csrf_token']
+        ?? $_SERVER['HTTP_X_CSRF_TOKEN']
+        ?? '';
     $token_session = $_SESSION['csrf_token'] ?? '';
-    if (!hash_equals($token_session, $token_post)) {
+    if (!$token_session || !hash_equals($token_session, $token_request)) {
         http_response_code(403);
         die('Acción no permitida.');
     }

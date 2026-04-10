@@ -286,7 +286,8 @@ class PaginasController {
         }
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+            csrf_verificar();
+
             if (!is_auth()) {
                 header('Location: /login');
             }
@@ -1952,6 +1953,7 @@ class PaginasController {
         session_start();
     
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             $usuario_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
             if (!$usuario_id) {
                 http_response_code(401);

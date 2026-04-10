@@ -1,3 +1,4 @@
+<meta name="csrf-token" content="<?php echo csrf_token(); ?>">
 <h2 class="privada__heading"><?php echo $titulo; ?></h2>
 <div class="dashboard__contenedor-boton dashboard__contenedor-boton-tallas privada__btn">
     <a class="dashboard__boton--panel" href="/area_privada">
@@ -57,6 +58,7 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content,
             },
             body: JSON.stringify({ mensaje_id: mensaje_id }),
         })
