@@ -1138,7 +1138,7 @@ class AsistenciaController {
                         if(isset($as->apellidos_nombre)
                             && $as->apellidos_nombre === $nombre
                             && $as->id_categoria === $id_categoria
-                            && $as->mes === $mes_num
+                            && $as->mes === (string)$mes_num
                             && $as->asiste == "1"
                         ) {
                             $count++;
