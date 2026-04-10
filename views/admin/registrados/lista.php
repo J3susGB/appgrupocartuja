@@ -4,6 +4,7 @@
     <?php if( !empty($miembros) ) { ?>
         <div class="dashboard__formulario ">
             <form method="POST" action="/admin/registrados/lista" enctype="multipart/form-data">
+<?php echo csrf_field(); ?>
              <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
                 <div class="filtros">
                     <div class="filtros__fecha">

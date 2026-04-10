@@ -17,6 +17,7 @@ if (!is_admin()) {
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" enctype="multipart/form-data" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="file" class="formulario__label">Selecciona un archivo PDF:</label>
             <input class="formulario__input" type="file" id="file" name="file" accept="application/pdf" value="<?php echo $planning->documento ? $planning->documento : ''; ?>">

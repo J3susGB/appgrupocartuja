@@ -14,6 +14,7 @@
 </div>
 
 <form method="POST" class="dashboard__formulario formulario" novalidate>
+<?php echo csrf_field(); ?>
     <div class="formulario__campo">
         <label for="nombre" class="formulario__label">Apellidos y nombre</label>
         <input 

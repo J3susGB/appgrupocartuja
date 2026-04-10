@@ -214,6 +214,7 @@ class MiembrosController {
         
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -338,6 +339,7 @@ class MiembrosController {
         $miembro->foto_actual = $miembro->foto;
     
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             if(!is_admin()) {
                 header('Location: /login');
@@ -502,7 +504,7 @@ class MiembrosController {
     //     // debuguear($miembro);
 
     //     if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
     //         if(!is_admin()) {
     //             header('Location: /login');
     //         }
@@ -640,6 +642,7 @@ class MiembrosController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');

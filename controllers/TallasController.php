@@ -110,6 +110,7 @@ class TallasController {
         // }
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             if(!is_admin()) {
                 header('Location: /login');
@@ -209,6 +210,7 @@ class TallasController {
         }
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             if(!is_admin()) {
                 header('Location: /login');
@@ -251,6 +253,7 @@ class TallasController {
     public static function eliminar() {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');

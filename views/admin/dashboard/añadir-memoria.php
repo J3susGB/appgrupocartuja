@@ -11,6 +11,7 @@
 
         <div class="entrenamientos__container">
             <form class="dashboard__formulario formulario" novalidate method="post" enctype="multipart/form-data">
+<?php echo csrf_field(); ?>
                 <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
                 <div class="formulario__campo">
                     <label for="file" class="formulario__label">Selecciona un archivo PDF:</label>

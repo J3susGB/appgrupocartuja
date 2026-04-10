@@ -81,12 +81,14 @@ class ActiveRecord {
         return $sanitizado;
     }
 
-    // Sincroniza BD con Objetos en memoria
-    public function sincronizar($args=[]) { 
+    // Sincroniza BD con Objetos en memoria.
+    // Si se pasa $permitidos, solo se sincronizan esos campos.
+    public function sincronizar($args=[], $permitidos=[]) {
         foreach($args as $key => $value) {
-          if(property_exists($this, $key) && !is_null($value)) {
-            $this->$key = $value;
-          }
+            if(!empty($permitidos) && !in_array($key, $permitidos, true)) continue;
+            if(property_exists($this, $key) && !is_null($value)) {
+                $this->$key = $value;
+            }
         }
     }
 
@@ -141,18 +143,21 @@ class ActiveRecord {
 
     // Busca fotos por su mes
     public static function findFotosMes($mes) {
+        $mes = (int) $mes;
         $query = "SELECT * FROM " . static::$tabla  ." WHERE mes = {$mes}";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
     // Busca un registro por su id
     public static function find($id) {
+        $id = (int) $id;
         $query = "SELECT * FROM " . static::$tabla  ." WHERE id = {$id}";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
     // Busca todos los registros de en id
     public static function find_all($id) {
+        $id = (int) $id;
         $query = "SELECT * FROM " . static::$tabla  ." WHERE id = {$id}";
         $resultado = self::consultarSQL($query);
         return $resultado;
@@ -160,6 +165,7 @@ class ActiveRecord {
 
     // Busca un registro de talla por el id del miembro
     public static function find_registro_talla($id) {
+        $id = (int) $id;
         $query = "SELECT * FROM " . static::$tabla  ." WHERE id_usuario = {$id}";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
@@ -179,36 +185,34 @@ class ActiveRecord {
         return $resultado;
     }
 
-    // Busqueda Where con Columna 
+    // Busqueda Where con Columna
     public static function where($columna, $valor) {
+        $valor = self::$db->escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
     // Busqueda Where todo con Columna
     public static function whereAll($columna, $valor) {
-        // Define la consulta SQL con una cláusula WHERE y ORDER BY
+        $valor = self::$db->escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'" .
                 " ORDER BY categoria_id, apellido1, apellido2, nombre";
 
-        // Ejecuta la consulta y devuelve los resultados
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
     // Busqueda Where todo con Columna
     public static function whereAll_unorder($columna, $valor) {
-        // Define la consulta SQL con una cláusula WHERE y ORDER BY
+        $valor = self::$db->escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}'" ;
 
-        // Ejecuta la consulta y devuelve los resultados
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
     public static function whereAll_order($columna, $valor, $orden = 'DESC') {
-        // Define la consulta SQL con una cláusula WHERE y ORDER BY
+        $valor = self::$db->escape_string($valor);
         $query = "SELECT * FROM " . static::$tabla . " WHERE {$columna} = '{$valor}' ORDER BY id {$orden}";
-    
-        // Ejecuta la consulta y devuelve los resultados
+
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -227,15 +231,16 @@ class ActiveRecord {
         return $resultado;
     }
 
-    // Busqueda Where con múltiples opciones 
+    // Busqueda Where con múltiples opciones
     public static function whereArray($array = []) {
         $query = "SELECT * FROM " . static::$tabla . " WHERE ";
         foreach($array as $key => $value) {
-            if( $key === array_key_last($array) ) { //Evaluará si está en al última llave del array, 
-                $query .= " {$key} = '{$value}'"; //Si es la última, no añadirá en AND al final
+            $value = self::$db->escape_string($value);
+            if( $key === array_key_last($array) ) {
+                $query .= " {$key} = '{$value}'";
             } else {
-                $query .= " {$key} = '{$value}' AND "; //Si no es la ultima, lo añadirá
-            }    
+                $query .= " {$key} = '{$value}' AND ";
+            }
         }
 
         $resultado = self::consultarSQL($query);

@@ -209,6 +209,7 @@ class DashboardController {
         // debuguear($cuentas);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             if(!is_admin()) {
                 header('Location: /login');
             }
@@ -381,6 +382,7 @@ class DashboardController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -449,6 +451,7 @@ class DashboardController {
         // debuguear($pack);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             // debuguear($_POST);
 
@@ -504,6 +507,7 @@ class DashboardController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -549,6 +553,7 @@ class DashboardController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -597,6 +602,7 @@ class DashboardController {
         // debuguear($pack);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             // debuguear($_POST);
 
@@ -651,6 +657,7 @@ class DashboardController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -692,6 +699,7 @@ class DashboardController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');

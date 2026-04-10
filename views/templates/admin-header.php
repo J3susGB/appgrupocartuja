@@ -9,6 +9,7 @@
         <nav class="dashboard__nav">
             <a class="header__enlace header__enlace--home" href="/">Home</a>
             <form class="dashboard__form" method="POST" action="/logout">
+<?php echo csrf_field(); ?>
                 <input class="dashboard__submit--logout" type="submit" value="Cerrar Sesión">
             </form>
         </nav>

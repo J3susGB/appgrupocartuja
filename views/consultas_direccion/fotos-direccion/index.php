@@ -34,6 +34,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -81,6 +82,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -128,6 +130,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -175,6 +178,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -222,6 +226,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -270,6 +275,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -317,6 +323,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -364,6 +371,7 @@
                                         Editar
                                     </a>
                                     <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                         <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                         <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                             <i class="fa-solid fa-circle-xmark"></i>
@@ -411,6 +419,7 @@
                                     Editar
                                 </a>
                                 <form method="POST" action="/admin/registrados/eliminar-foto" class="fotos table__formulario">
+<?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo $foto->id ?>">
                                     <button class="acciones-foto eliminar-galeria table__accion table__accion--eliminar" type="submit">
                                         <i class="fa-solid fa-circle-xmark"></i>

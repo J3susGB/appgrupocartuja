@@ -7,6 +7,7 @@
     ?>
 
     <form method="POST" action="/registro" class="formulario" enctype="multipart/form-data">
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="nombre" class="formulario__label">Nombre</label>
             <input 
@@ -15,29 +16,29 @@
                 placeholder="Introduce tu nombre"
                 id="nombre"
                 name="nombre"
-                value="<?php echo $usuario->nombre; ?>"
+                value="<?php echo s($usuario->nombre); ?>"
             />
         </div>
         <div class="formulario__campo">
             <label for="apellido1" class="formulario__label">Primer apellido</label>
-            <input 
+            <input
                 type="text"
                 class="formulario__input"
                 placeholder="Introduce primer apellido"
                 id="apellido1"
                 name="apellido1"
-                value="<?php echo $usuario->apellido1; ?>"
+                value="<?php echo s($usuario->apellido1); ?>"
             />
         </div>
         <div class="formulario__campo">
             <label for="apellido2" class="formulario__label">Segundo apellido</label>
-            <input 
+            <input
                 type="text"
                 class="formulario__input"
                 placeholder="Introduce segundo apellido"
                 id="apellido2"
                 name="apellido2"
-                value="<?php echo $usuario->apellido2; ?>"
+                value="<?php echo s($usuario->apellido2); ?>"
             />
         </div>
         <div class="formulario__campo">
@@ -70,7 +71,7 @@
                 placeholder="Introduce tu Teléfono"
                 id="telefono"
                 name="telefono"
-                value="<?php echo $usuario->telefono; ?>"
+                value="<?php echo s($usuario->telefono); ?>"
             />
         </div>
         <div class="formulario__campo">
@@ -81,17 +82,17 @@
                 placeholder="Introduce tu email"
                 id="email"
                 name="email"
-                value="<?php echo $usuario->email; ?>"
+                value="<?php echo s($usuario->email); ?>"
             />
         </div>
         <div class="formulario__campo">
             <label for="foto" class="formulario__label">Foto</label>
-            <input 
-                type="file" 
-                class="formulario__input formulario__input--file" 
-                id="foto" 
-                name="foto" 
-                value="<?php echo $usuario->foto; ?>"
+            <input
+                type="file"
+                class="formulario__input formulario__input--file"
+                id="foto"
+                name="foto"
+                value="<?php echo s($usuario->foto ?? ''); ?>"
             />
         </div>
         <div class="formulario__campo">

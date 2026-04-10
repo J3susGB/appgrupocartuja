@@ -17,6 +17,7 @@ if (!is_admin()) {
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" enctype="multipart/form-data" class="formulario">
+<?php echo csrf_field(); ?>
 
         <div class="filtros__fecha">
             <input id="fecha" type="date" name="dia" value="<?php echo isset($foto->fecha_formateada) ? $foto->fecha_formateada : ''; ?>" />

@@ -22,6 +22,35 @@ function pagina_actual($path) {
 
 
 
+// Genera (o reutiliza) el token CSRF de la sesión
+function csrf_token() : string {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+// Imprime el campo oculto CSRF listo para usar en formularios
+function csrf_field() : string {
+    return '<input type="hidden" name="csrf_token" value="' . csrf_token() . '">';
+}
+
+// Valida el token CSRF del POST; mata la request si no coincide
+function csrf_verificar() : void {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $token_post    = $_POST['csrf_token'] ?? '';
+    $token_session = $_SESSION['csrf_token'] ?? '';
+    if (!hash_equals($token_session, $token_post)) {
+        http_response_code(403);
+        die('Acción no permitida.');
+    }
+}
+
 function is_auth() : bool {
     session_start();
     return isset($_SESSION['nombre']) && !empty($_SESSION);

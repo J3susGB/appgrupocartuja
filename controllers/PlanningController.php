@@ -236,6 +236,7 @@ class PlanningController {
     public static function eliminar_entrenamiento() {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');

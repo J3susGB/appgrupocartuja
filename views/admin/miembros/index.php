@@ -131,6 +131,7 @@
                                 Editar
                             </a>
                             <form method="POST" action="/admin/miembros/eliminar" class="table__formulario">
+<?php echo csrf_field(); ?>
                                 <input type="hidden" name="id" value="<?php echo $miembro->id ?>">
                                 <button class="table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>

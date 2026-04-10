@@ -17,6 +17,7 @@
 
     <?php foreach ($miembros as $miembro) { ?>
         <form method="POST" enctype="multipart/form-data" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
 
             <fieldset>
                 <legend class="privada__legend">Información de tallas</legend>

@@ -40,6 +40,7 @@
                                 Editar
                             </a>
                             <form method="POST" action="/admin/dashboard/eliminar-categoria" class="table__formulario">
+<?php echo csrf_field(); ?>
                                 <input type="hidden" name="id" value="<?php echo $categoria->id ?>">
                                 <button class="table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>

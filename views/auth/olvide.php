@@ -7,6 +7,7 @@
     ?>
 
     <form method="POST" action="/olvide" class="formulario">
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="email" class="formulario__label">Email</label>
             <input 

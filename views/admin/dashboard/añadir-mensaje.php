@@ -18,6 +18,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" action="/admin/dashboard/añadir-mensaje" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="asunto" class="formulario__label">Asunto</label>
             <input 
@@ -26,14 +27,14 @@
                 id="asunto" 
                 name="asunto" 
                 placeholder="Introduce asunto"
-                value="<?php echo $mensaje->asunto ?? ''; ?>" />
+                value="<?php echo s($mensaje->asunto ?? ''); ?>" />
         </div>
         <div class="formulario__campo">
                     <label class="formulario__label">Cuerpo del mensaje</label>
-                    <textarea class="formulario__input" 
-                        id="cuerpo" 
-                        name="cuerpo" 
-                        placeholder="Escribe el mensaje"><?php echo $mensaje->cuerpo ?? ''; ?></textarea>
+                    <textarea class="formulario__input"
+                        id="cuerpo"
+                        name="cuerpo"
+                        placeholder="Escribe el mensaje"><?php echo s($mensaje->cuerpo ?? ''); ?></textarea>
                 </div>
         
         <input type="submit" class="alerta formulario__submit formulario__submit--registrar" value="Enviar mensaje">

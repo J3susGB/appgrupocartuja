@@ -18,6 +18,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="nombre_cat" class="formulario__label">Nombre de la categoría</label>
             <input 

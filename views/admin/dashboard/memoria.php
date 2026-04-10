@@ -31,6 +31,7 @@
                         </td>
                         <td class="table__td--acciones">
                             <form method="POST" action="/admin/dashboard/eliminar-memoria" class="table__formulario">
+<?php echo csrf_field(); ?>
                                 <input type="hidden" name="id" value="<?php echo $plan->id; ?>">
                                 <button class="alerta_eliminar table__accion table__accion--eliminar" type="submit">
                                     <i class="fa-solid fa-circle-xmark"></i>

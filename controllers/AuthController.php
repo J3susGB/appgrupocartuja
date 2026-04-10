@@ -18,6 +18,7 @@ class AuthController {
         $usuario = null;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
     
             $usuario = new Usuario($_POST);
 
@@ -80,6 +81,7 @@ class AuthController {
 
     public static function logout() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             session_start();
             $_SESSION = [];
             header('Location: /');
@@ -101,6 +103,7 @@ class AuthController {
         
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             $categorias = new Categoria($_POST['categoria_id']);
             $categoria_id = intval($_POST['usuarios']['categoria_id']);
@@ -140,8 +143,11 @@ class AuthController {
 
             }
 
-            //Sincronizar con el post:
-            $usuario->sincronizar($_POST);
+            //Sincronizar con el post (solo campos permitidos en el registro):
+            $usuario->sincronizar($_POST, [
+                'nombre', 'apellido1', 'apellido2', 'telefono',
+                'email', 'password', 'foto', 'categoria_id', 'pack_id',
+            ]);
 
             //Validar:
             $alertas = $usuario->validar_cuenta();
@@ -202,6 +208,7 @@ class AuthController {
         $alertas = [];
         
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             $usuario = new Usuario($_POST);
             $alertas = $usuario->validarEmail();
 
@@ -261,6 +268,7 @@ class AuthController {
 
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             // Añadir el nuevo password
             $usuario->sincronizar($_POST);

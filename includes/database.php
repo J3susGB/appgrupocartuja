@@ -9,8 +9,7 @@ $db = mysqli_connect(
 $db->set_charset('utf8');
 
 if (!$db) {
-    echo "Error: No se pudo conectar a MySQL.";
-    echo "errno de depuración: " . mysqli_connect_errno();
-    echo "error de depuración: " . mysqli_connect_error();
-    exit;
+    error_log("Error de conexión MySQL - errno: " . mysqli_connect_errno() . " - " . mysqli_connect_error());
+    http_response_code(500);
+    die("Error interno del servidor. Por favor, inténtalo más tarde.");
 }

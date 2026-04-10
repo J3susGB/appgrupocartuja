@@ -157,6 +157,7 @@ class FotosController {
         // debuguear($turnos);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             if(!is_admin()) {
                 header('Location: /login');
             }
@@ -246,6 +247,7 @@ class FotosController {
         // debuguear($turnos);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             if(!is_admin() && !es_organizador()) {
                 header('Location: /login');
             }
@@ -369,6 +371,7 @@ class FotosController {
         // debuguear($foto);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             
             if(!is_admin()) {
@@ -510,6 +513,7 @@ class FotosController {
         // debuguear($foto);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             
             if(!is_admin()) {
@@ -608,6 +612,7 @@ class FotosController {
     public static function eliminar_foto() {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!is_admin()) {
                 header('Location: /login');
@@ -634,6 +639,7 @@ class FotosController {
     public static function eliminar_foto_org() {
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
 
             if(!es_organizador()) {
                 header('Location: /login');

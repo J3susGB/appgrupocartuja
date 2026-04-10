@@ -57,6 +57,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
     
     <form method="POST" action="/admin/dashboard/cuentas" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <h4 id="ingresosGastos">Anota los ingresos y gastos</h4>
         <div class="formulario--cuentas dashboard__recuento--grid dashboard__recuento--grid--balance--cuentas">
             <div class="formulario__campo">

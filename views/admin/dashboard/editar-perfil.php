@@ -18,6 +18,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" enctype="multipart/form-data" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <div class="formulario__campo">
             <label for="nombre" class="formulario__label">Nombre</label>
             <input 

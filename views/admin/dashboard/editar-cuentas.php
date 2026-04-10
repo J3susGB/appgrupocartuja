@@ -19,6 +19,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
     
     <form method="POST" class="formulario" novalidate>
+<?php echo csrf_field(); ?>
         <div class="formulario--cuentas dashboard__recuento--grid dashboard__recuento--grid--balance--cuentas">
             <div class="formulario__campo dashboard__recuento--grid--balance dashboard__recuento--grid--texto">
                 <label for="concepto" class="formulario__label">Concepto</label>

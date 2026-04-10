@@ -14,6 +14,7 @@
 </div>
 
 <form method="POST" action="/admin/miembros/añadir-talla" class="dashboard__formulario formulario" novalidate>
+<?php echo csrf_field(); ?>
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
     <div class="formulario__campo">
         <label for="usuario" class="formulario__label">Usuario</label>

@@ -340,8 +340,10 @@ class PaginasController {
                 $_POST['foto'] = $miembro->foto;
             }
     
-            // Sincronizar los datos del miembro
-            $miembro->sincronizar($_POST);
+            // Sincronizar los datos del miembro (solo campos permitidos al usuario):
+            $miembro->sincronizar($_POST, [
+                'nombre', 'apellido1', 'apellido2', 'telefono', 'email', 'foto',
+            ]);
     
             // Datos de tallas del usuario
             if ($miembro->pack_id !== "1" && $miembro->pack_id !== "2") {
@@ -520,6 +522,7 @@ class PaginasController {
         // debuguear($miembros);
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             
             if(!is_auth()) {
                 header('Location: /login');
@@ -645,6 +648,7 @@ class PaginasController {
         }
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            csrf_verificar();
             // debuguear($_POST);
             if(!is_auth()) {
                 header('Location: /login');

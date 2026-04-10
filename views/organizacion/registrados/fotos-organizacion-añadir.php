@@ -17,6 +17,7 @@
     <?php include_once __DIR__ . '/../../templates/alertas.php'; ?>
 
     <form method="POST" action="/organizacion/registrados/fotos-organizacion-añadir" enctype="multipart/form-data" class="formulario">
+<?php echo csrf_field(); ?>
         
         <div class="filtros__fecha">
             <input
