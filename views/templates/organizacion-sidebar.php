@@ -24,11 +24,5 @@
                 Fotos
             </span>
         </a>
-        <a href="/organizacion/asistencia" class="dashboard__enlace <?php echo pagina_actual('/asistencia') ? 'dashboard__enlace--actual' : ''; ?>">
-            <i class="fa-solid fa-calendar-days dashboard__icono"></i>
-            <span class="dashboard__menu-texto">
-                Asistencia
-            </span>
-        </a>
     </nav>
 </div>

@@ -1,5 +1,5 @@
 <?php 
-    if(!is_admin() && !es_organizador()) {
+    if(!is_admin()) {
         header('Location: /login');
     }
 ?>

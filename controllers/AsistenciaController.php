@@ -1232,7 +1232,7 @@ class AsistenciaController {
     }
 
     public static function index_org(Router $router) {
-        if(!is_admin() && !es_organizador()) {
+        if(!is_admin()) {
             header('Location: /login');
         }
 
