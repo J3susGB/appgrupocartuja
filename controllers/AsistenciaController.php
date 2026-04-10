@@ -1103,8 +1103,7 @@ class AsistenciaController {
                     $as->apellidos_nombre = $mi->apellido1 . " " . $mi->apellido2 . " " . $mi->nombre;
                 }
             }
-            $fecha_formateada = date("y-m-d", strtotime(str_replace('/', '-', $as->fecha)));
-            $as->mes = date('m', strtotime($fecha_formateada));
+            $as->mes = date('m', strtotime(str_replace('/', '-', $as->fecha)));
         }
 
         $meses_config = [
