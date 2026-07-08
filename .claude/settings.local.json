@@ -6,7 +6,28 @@
       "Bash(npx gulp:*)",
       "Bash(php -r 'require '\\\\''vendor/autoload.php'\\\\''; use PhpOffice\\\\PhpSpreadsheet\\\\Spreadsheet; $s = new Spreadsheet\\(\\); echo '\\\\''OK'\\\\'';')",
       "Bash(php -r ':*)",
-      "Bash(php -l controllers/AsistenciaController.php)"
+      "Bash(php -l controllers/AsistenciaController.php)",
+      "Bash(grep '$_GET')",
+      "Bash(grep -rn 'sincronizar\\($_POST\\\\|sincronizar\\($_GET' controllers/ '--include=*.php')",
+      "Bash(grep -rn \"echo \\\\$\" views/ --include=\"*.php\")",
+      "Bash(grep -v 'htmlspecialchars\\\\|s\\($\\\\|pagina_actual\\\\| \\\\? \\\\|titulo\\\\|//\\\\|echo $total\\\\|echo $nombre\\\\|echo $mes\\\\|echo $count\\\\|echo $i\\\\b')",
+      "Bash(grep -v 'echo $router\\\\|echo $url')",
+      "Bash(php -l includes/database.php)",
+      "Bash(php -l models/ActiveRecord.php)",
+      "Bash(php -l includes/app.php)",
+      "Bash(grep -rn \"value=\\\\\"<?php echo \\\\$\" views/ --include=\"*.php\")",
+      "Bash(grep -v \"s\\(\\\\|htmlspecialchars\\\\|pagina_actual\\\\|titulo\\\\|//\")",
+      "Bash(grep -v 'echo $i\\\\b\\\\|echo $total\\\\|echo $count\\\\|echo $nombre\\\\b\\\\|echo $mes\\\\b')",
+      "Bash(grep -rn 'echo $usuario->\\\\|echo $mensaje->\\\\|echo $categoria->\\\\|echo $pack->\\\\|echo $miembro->' views/ '--include=*.php')",
+      "Bash(grep -v \"s\\(\\\\|htmlspecialchars\\\\|//\")",
+      "Bash(grep -rn 'echo $usuario->\\\\|echo $miembro->' views/auth/ views/area_privada/ views/ui/ '--include=*.php')",
+      "Bash(php -l views/auth/registro.php)",
+      "Bash(php -l \"views/admin/dashboard/añadir-mensaje.php\")",
+      "Bash(php -l views/admin/dashboard/editar-mensaje.php)",
+      "Bash(php -l controllers/AuthController.php)",
+      "Bash(php -l controllers/PaginasController.php)",
+      "Bash(npx gulp *)",
+      "Bash(git checkout *)"
     ]
   }
 }

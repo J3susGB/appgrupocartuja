@@ -155,4 +155,5 @@ $is_admin = is_admin() ? 'true' : 'false';
 ?>
 <script>
     var isAdmin = <?php echo $is_admin; ?>;
+    var csrfToken = "<?php echo csrf_token(); ?>";
 </script>

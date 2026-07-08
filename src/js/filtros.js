@@ -135,6 +135,11 @@
                             inputId.name = 'id';
                             inputId.value = miembro.id;
                             formEliminar.appendChild(inputId);
+                            const inputCsrf = document.createElement('input');
+                            inputCsrf.type = 'hidden';
+                            inputCsrf.name = 'csrf_token';
+                            inputCsrf.value = csrfToken;
+                            formEliminar.appendChild(inputCsrf);
                             const botonEliminar = document.createElement('button');
                             botonEliminar.type = 'submit';
                             botonEliminar.classList.add('table__accion', 'table__accion--eliminar');
