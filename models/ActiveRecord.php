@@ -133,10 +133,11 @@ class ActiveRecord {
         return $resultado;
     }
 
-    // Obtener todos los registros ordenados 
-    public static function all_ord($primero = 'apellido1', $segundo = 'apellido2', $tercero = 'nombre') {
+    // Obtener todos los registros ordenados
+    public static function all_ord($primero = 'apellido1', $segundo = 'apellido2', $tercero = 'nombre', $orden_previo = null) {
         // Cambiar la consulta para ordenar por primer apellido, luego segundo apellido y finalmente nombre
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$primero}, {$segundo}, {$tercero}";
+        $prefijo_orden = $orden_previo ? "{$orden_previo}, " : '';
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$prefijo_orden}{$primero}, {$segundo}, {$tercero}";
         $resultado = self::consultarSQL($query);
         return $resultado;
     }
@@ -179,8 +180,9 @@ class ActiveRecord {
     }
 
     //Paginar los registros
-    public static function paginar($primero, $segundo, $tercero, $por_pagina, $offset) {
-        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$primero}, {$segundo}, {$tercero} LIMIT {$por_pagina} OFFSET {$offset}" ;
+    public static function paginar($primero, $segundo, $tercero, $por_pagina, $offset, $orden_previo = null) {
+        $prefijo_orden = $orden_previo ? "{$orden_previo}, " : '';
+        $query = "SELECT * FROM " . static::$tabla . " ORDER BY {$prefijo_orden}{$primero}, {$segundo}, {$tercero} LIMIT {$por_pagina} OFFSET {$offset}" ;
         $resultado = self::consultarSQL($query);
         return $resultado;
     }

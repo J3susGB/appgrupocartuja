@@ -27,7 +27,10 @@
       "Bash(php -l controllers/AuthController.php)",
       "Bash(php -l controllers/PaginasController.php)",
       "Bash(npx gulp *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(command -v php)",
+      "Bash(php -l controllers/MiembrosController.php)",
+      "Bash(php -l controllers/APIController.php)"
     ]
   }
 }
