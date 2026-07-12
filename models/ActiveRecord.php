@@ -76,6 +76,10 @@ class ActiveRecord {
         $atributos = $this->atributos();
         $sanitizado = [];
         foreach($atributos as $key => $value ) {
+            // Elimina espacios sueltos al inicio y al final para no romper ordenaciones alfabéticas
+            if(is_string($value)) {
+                $value = trim($value);
+            }
             $sanitizado[$key] = self::$db->escape_string($value);
         }
         return $sanitizado;

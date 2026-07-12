@@ -52,6 +52,16 @@ class Usuario extends ActiveRecord {
         $this->directivo = $args['directivo'] ?? 0;
     }
 
+    // Sanitizar los datos antes de guardarlos en la BD
+    public function sanitizarAtributos() {
+        // Colapsa espacios internos múltiples en nombre y apellidos (además del trim genérico)
+        // para que no afecten a la ordenación alfabética
+        $this->nombre = preg_replace('/\s+/', ' ', trim((string) $this->nombre));
+        $this->apellido1 = preg_replace('/\s+/', ' ', trim((string) $this->apellido1));
+        $this->apellido2 = preg_replace('/\s+/', ' ', trim((string) $this->apellido2));
+        return parent::sanitizarAtributos();
+    }
+
     // Validar el Login de Usuarios
     public function validarLogin() {
         if(!$this->email) {

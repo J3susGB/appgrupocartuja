@@ -53,7 +53,7 @@ class MiembrosController {
         }
         //______________________________________________________________________________
 
-        $miembros = Usuario::paginar('apellido1', 'apellido2', 'nombre', $registros_por_pagina, $paginacion->offset(), 'categoria_id');
+        $miembros = Usuario::paginar('TRIM(apellido1)', 'TRIM(apellido2)', 'TRIM(nombre)', $registros_por_pagina, $paginacion->offset(), 'categoria_id');
         $categorias = Categoria::all('ASC');
         $packs = Pack::all();
 
@@ -150,7 +150,7 @@ class MiembrosController {
         }
         //______________________________________________________________________________
 
-        $miembros = Usuario::paginar('apellido1', 'apellido2', 'nombre', $registros_por_pagina, $paginacion->offset(), 'categoria_id');
+        $miembros = Usuario::paginar('TRIM(apellido1)', 'TRIM(apellido2)', 'TRIM(nombre)', $registros_por_pagina, $paginacion->offset(), 'categoria_id');
         $categorias = Categoria::all('ASC');
         $packs = Pack::all();
 

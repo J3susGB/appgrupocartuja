@@ -18,7 +18,7 @@ class APIController {
         session_start();
 
         //Traigo todos los usuarios excepto los administradores, ordenados por categoría, apellidos y nombre
-        $miembros = Usuario::all_ord('apellido1', 'apellido2', 'nombre', 'categoria_id');
+        $miembros = Usuario::all_ord('TRIM(apellido1)', 'TRIM(apellido2)', 'TRIM(nombre)', 'categoria_id');
         $miembros = array_filter($miembros, function($tot) {
             // Devuelve true para conservar el elemento, false para eliminarlo
             return $tot->admin !== "1" && $tot->directivo !== "1";
